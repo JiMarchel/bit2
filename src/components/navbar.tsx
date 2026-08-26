@@ -13,9 +13,9 @@ const navItems = [
   { label: "Home", to: "/" },
   { label: "Trading", to: "/trading" },
   { label: "Platform", to: "/platform" },
-  { label: "Education", to: "#" },
-  { label: "Company", to: "#" },
-  { label: "Contact Us", to: "#" },
+  // { label: "Education", to: "#" },
+  // { label: "Company", to: "#" },
+  // { label: "Contact Us", to: "#" },
 ];
 
 export function Navbar() {
