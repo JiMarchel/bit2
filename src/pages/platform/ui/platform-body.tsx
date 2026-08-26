@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui/button";
 
-export function Body() {
+export function PlatformBody() {
     return (
         <section className="flex flex-col w-full">
             {/* Top Section - Black Background */}

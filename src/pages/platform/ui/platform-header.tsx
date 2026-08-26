@@ -1,6 +1,6 @@
 import { Check } from "lucide-react";
 
-export function Header() {
+export function PlatformHeader() {
     return (
         <section className="bg-muted-3 min-h-screen w-full flex items-center justify-center p-6 pt-24 lg:p-12">
             <div className="w-full max-w-7xl mx-auto bg-[#E8E9EC] rounded-[40px] p-10 lg:p-16 flex flex-col lg:flex-row items-center gap-10 shadow-2xl relative">

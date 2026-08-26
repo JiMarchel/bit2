@@ -1,12 +1,4 @@
-import { Transaction } from '#/features/trading/screen/transaction'
 import { createFileRoute } from '@tanstack/react-router'
+import { TradingPage } from '@/pages/trading'
 
-export const Route = createFileRoute('/trading/')({
-  component: RouteComponent,
-})
-
-function RouteComponent() {
-  return <>
-    <Transaction />
-  </>
-}
+export const Route = createFileRoute('/trading/')({ component: TradingPage })

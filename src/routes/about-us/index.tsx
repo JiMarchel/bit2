@@ -1,10 +1,4 @@
-import { About } from '#/features/about-us/screen/about'
 import { createFileRoute } from '@tanstack/react-router'
+import { AboutUsPage } from '@/pages/about-us'
 
-export const Route = createFileRoute('/about-us/')({
-  component: RouteComponent,
-})
-
-function RouteComponent() {
-  return <About/>
-}
+export const Route = createFileRoute('/about-us/')({ component: AboutUsPage })

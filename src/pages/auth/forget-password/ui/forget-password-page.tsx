@@ -1,7 +1,7 @@
-import { ForgetPasswordForm } from "#/features/auth/forget-password/components/forget-password-form";
+import { ForgetPasswordForm } from "./forget-password-form";
 import { HeadphonesIcon } from "lucide-react";
 
-export function ForgetPasswordScreen() {
+export function ForgetPasswordPage() {
     return (
         <div className="flex w-full min-h-screen bg-[#001415] relative items-center justify-center p-6">
             <ForgetPasswordForm />

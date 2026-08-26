@@ -1,6 +1,6 @@
-import { SignInForm } from "#/features/auth/sign-in/components/sign-in-form";
+import { SignInForm } from "./sign-in-form";
 
-export function SignInScreen() {
+export function SignInPage() {
     return (
         <div className="flex w-full min-h-screen bg-[#041011]">
             {/* Left side Image */}

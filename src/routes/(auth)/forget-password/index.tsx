@@ -1,10 +1,6 @@
-import { ForgetPasswordScreen } from '#/features/auth/forget-password/screen/forget-password-screen'
 import { createFileRoute } from '@tanstack/react-router'
+import { ForgetPasswordPage } from '@/pages/auth/forget-password'
 
 export const Route = createFileRoute('/(auth)/forget-password/')({
-  component: RouteComponent,
+  component: ForgetPasswordPage,
 })
-
-function RouteComponent() {
-  return <ForgetPasswordScreen/>
-}

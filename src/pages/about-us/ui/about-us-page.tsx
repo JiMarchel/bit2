@@ -1,6 +1,6 @@
 import { Button } from "@/shared/ui/button";
 
-export function About() {
+export function AboutUsPage() {
     return (
         <section className="bg-[#EBEBEB] min-h-screen w-full pt-32 pb-20 px-6 flex flex-col items-center text-center">
             

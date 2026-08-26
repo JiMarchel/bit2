@@ -1,10 +1,6 @@
-import { SignInScreen } from '#/features/auth/sign-in/screen/sign-in-screen'
 import { createFileRoute } from '@tanstack/react-router'
+import { SignInPage } from '@/pages/auth/sign-in'
 
 export const Route = createFileRoute('/(auth)/sign-in/')({
-  component: RouteComponent,
+  component: SignInPage,
 })
-
-function RouteComponent() {
-  return <SignInScreen/>
-}

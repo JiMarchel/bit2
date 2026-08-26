@@ -1,6 +1,6 @@
-import { SignUpForm } from "#/features/auth/sign-up/components/sign-up-form";
+import { SignUpForm } from "./sign-up-form";
 
-export function SignUpScreen() {
+export function SignUpPage() {
     return (
         <div className="flex w-full min-h-screen bg-[#041011]">
             {/* Left side Image */}
