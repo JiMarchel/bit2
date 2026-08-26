@@ -1,6 +1,6 @@
-import { Label } from "#/components/ui/label";
-import { Input } from "#/components/ui/input";
-import { Button } from "#/components/ui/button";
+import { Label } from "@/shared/ui/label";
+import { Input } from "@/shared/ui/input";
+import { Button } from "@/shared/ui/button";
 import { Link } from "@tanstack/react-router";
 
 export function SignUpForm() {

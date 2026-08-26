@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Button } from "#/components/ui/button";
+import { Button } from "@/shared/ui/button";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "#/components/ui/sheet";
+} from "@/shared/ui/sheet";
 import { Menu } from "lucide-react";
 
 const navItems = [

@@ -1,5 +1,5 @@
-import Silk from "#/components/silk";
-import { Button } from "#/components/ui/button";
+import Silk from "@/shared/ui/silk";
+import { Button } from "@/shared/ui/button";
 
 export function RegisterNow() {
     return (

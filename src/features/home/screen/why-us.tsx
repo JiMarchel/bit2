@@ -1,4 +1,4 @@
-import Silk from "#/components/silk";
+import Silk from "@/shared/ui/silk";
 
 const cards = [
     {

@@ -1,4 +1,4 @@
-import { Avatar, AvatarFallback, AvatarImage, AvatarGroup } from '#/components/ui/avatar'
+import { Avatar, AvatarFallback, AvatarImage, AvatarGroup } from '@/shared/ui/avatar'
 
 interface Item {
   symbol: string
