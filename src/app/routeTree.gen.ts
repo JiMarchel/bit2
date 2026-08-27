@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as UnauthenticatedRouteImport } from './routes/_unauthenticated'
+import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
 import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account/index'
 import { Route as AuthenticatedCopyTradingIndexRouteImport } from './routes/_authenticated/copy-trading/index'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
@@ -21,6 +22,12 @@ import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthen
 import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
 import { Route as UnauthenticatedPlatformIndexRouteImport } from './routes/_unauthenticated/platform/index'
 import { Route as UnauthenticatedTradingIndexRouteImport } from './routes/_unauthenticated/trading/index'
+import { Route as AuthenticatedProfileBanksIndexRouteImport } from './routes/_authenticated/profile/banks/index'
+import { Route as AuthenticatedProfileCryptoIndexRouteImport } from './routes/_authenticated/profile/crypto/index'
+import { Route as AuthenticatedProfileKycIndexRouteImport } from './routes/_authenticated/profile/kyc/index'
+import { Route as AuthenticatedProfileReferralIndexRouteImport } from './routes/_authenticated/profile/referral/index'
+import { Route as AuthenticatedProfileSecurityIndexRouteImport } from './routes/_authenticated/profile/security/index'
+import { Route as AuthenticatedProfileTransactionsIndexRouteImport } from './routes/_authenticated/profile/transactions/index'
 import { Route as UnauthenticatedauthForgetPasswordIndexRouteImport } from './routes/_unauthenticated/(auth)/forget-password/index'
 import { Route as UnauthenticatedauthSignInIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-in/index'
 import { Route as UnauthenticatedauthSignUpIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-up/index'
@@ -32,6 +39,11 @@ const AuthenticatedRoute = AuthenticatedRouteImport.update({
 const UnauthenticatedRoute = UnauthenticatedRouteImport.update({
   id: '/_unauthenticated',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const AuthenticatedAccountIndexRoute =
   AuthenticatedAccountIndexRouteImport.update({
@@ -64,9 +76,9 @@ const AuthenticatedIbIndexRoute = AuthenticatedIbIndexRouteImport.update({
 } as any)
 const AuthenticatedProfileIndexRoute =
   AuthenticatedProfileIndexRouteImport.update({
-    id: '/profile/',
-    path: '/profile/',
-    getParentRoute: () => AuthenticatedRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedProfileRoute,
   } as any)
 const UnauthenticatedhomeIndexRoute =
   UnauthenticatedhomeIndexRouteImport.update({
@@ -92,6 +104,42 @@ const UnauthenticatedTradingIndexRoute =
     path: '/trading/',
     getParentRoute: () => UnauthenticatedRoute,
   } as any)
+const AuthenticatedProfileBanksIndexRoute =
+  AuthenticatedProfileBanksIndexRouteImport.update({
+    id: '/banks/',
+    path: '/banks/',
+    getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
+const AuthenticatedProfileCryptoIndexRoute =
+  AuthenticatedProfileCryptoIndexRouteImport.update({
+    id: '/crypto/',
+    path: '/crypto/',
+    getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
+const AuthenticatedProfileKycIndexRoute =
+  AuthenticatedProfileKycIndexRouteImport.update({
+    id: '/kyc/',
+    path: '/kyc/',
+    getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
+const AuthenticatedProfileReferralIndexRoute =
+  AuthenticatedProfileReferralIndexRouteImport.update({
+    id: '/referral/',
+    path: '/referral/',
+    getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
+const AuthenticatedProfileSecurityIndexRoute =
+  AuthenticatedProfileSecurityIndexRouteImport.update({
+    id: '/security/',
+    path: '/security/',
+    getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
+const AuthenticatedProfileTransactionsIndexRoute =
+  AuthenticatedProfileTransactionsIndexRouteImport.update({
+    id: '/transactions/',
+    path: '/transactions/',
+    getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
 const UnauthenticatedauthForgetPasswordIndexRoute =
   UnauthenticatedauthForgetPasswordIndexRouteImport.update({
     id: '/(auth)/forget-password/',
@@ -113,6 +161,7 @@ const UnauthenticatedauthSignUpIndexRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof UnauthenticatedhomeIndexRoute
+  '/profile': typeof AuthenticatedProfileRouteWithChildren
   '/account/': typeof AuthenticatedAccountIndexRoute
   '/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -122,6 +171,12 @@ export interface FileRoutesByFullPath {
   '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/profile/banks/': typeof AuthenticatedProfileBanksIndexRoute
+  '/profile/crypto/': typeof AuthenticatedProfileCryptoIndexRoute
+  '/profile/kyc/': typeof AuthenticatedProfileKycIndexRoute
+  '/profile/referral/': typeof AuthenticatedProfileReferralIndexRoute
+  '/profile/security/': typeof AuthenticatedProfileSecurityIndexRoute
+  '/profile/transactions/': typeof AuthenticatedProfileTransactionsIndexRoute
   '/forget-password/': typeof UnauthenticatedauthForgetPasswordIndexRoute
   '/sign-in/': typeof UnauthenticatedauthSignInIndexRoute
   '/sign-up/': typeof UnauthenticatedauthSignUpIndexRoute
@@ -137,6 +192,12 @@ export interface FileRoutesByTo {
   '/about-us': typeof UnauthenticatedAboutUsIndexRoute
   '/platform': typeof UnauthenticatedPlatformIndexRoute
   '/trading': typeof UnauthenticatedTradingIndexRoute
+  '/profile/banks': typeof AuthenticatedProfileBanksIndexRoute
+  '/profile/crypto': typeof AuthenticatedProfileCryptoIndexRoute
+  '/profile/kyc': typeof AuthenticatedProfileKycIndexRoute
+  '/profile/referral': typeof AuthenticatedProfileReferralIndexRoute
+  '/profile/security': typeof AuthenticatedProfileSecurityIndexRoute
+  '/profile/transactions': typeof AuthenticatedProfileTransactionsIndexRoute
   '/forget-password': typeof UnauthenticatedauthForgetPasswordIndexRoute
   '/sign-in': typeof UnauthenticatedauthSignInIndexRoute
   '/sign-up': typeof UnauthenticatedauthSignUpIndexRoute
@@ -145,6 +206,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_unauthenticated': typeof UnauthenticatedRouteWithChildren
+  '/_authenticated/profile': typeof AuthenticatedProfileRouteWithChildren
   '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
   '/_authenticated/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -155,6 +217,12 @@ export interface FileRoutesById {
   '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/_unauthenticated/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/_unauthenticated/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/_authenticated/profile/banks/': typeof AuthenticatedProfileBanksIndexRoute
+  '/_authenticated/profile/crypto/': typeof AuthenticatedProfileCryptoIndexRoute
+  '/_authenticated/profile/kyc/': typeof AuthenticatedProfileKycIndexRoute
+  '/_authenticated/profile/referral/': typeof AuthenticatedProfileReferralIndexRoute
+  '/_authenticated/profile/security/': typeof AuthenticatedProfileSecurityIndexRoute
+  '/_authenticated/profile/transactions/': typeof AuthenticatedProfileTransactionsIndexRoute
   '/_unauthenticated/(auth)/forget-password/': typeof UnauthenticatedauthForgetPasswordIndexRoute
   '/_unauthenticated/(auth)/sign-in/': typeof UnauthenticatedauthSignInIndexRoute
   '/_unauthenticated/(auth)/sign-up/': typeof UnauthenticatedauthSignUpIndexRoute
@@ -163,6 +231,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/profile'
     | '/account/'
     | '/copy-trading/'
     | '/dashboard/'
@@ -172,6 +241,12 @@ export interface FileRouteTypes {
     | '/about-us/'
     | '/platform/'
     | '/trading/'
+    | '/profile/banks/'
+    | '/profile/crypto/'
+    | '/profile/kyc/'
+    | '/profile/referral/'
+    | '/profile/security/'
+    | '/profile/transactions/'
     | '/forget-password/'
     | '/sign-in/'
     | '/sign-up/'
@@ -187,6 +262,12 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/platform'
     | '/trading'
+    | '/profile/banks'
+    | '/profile/crypto'
+    | '/profile/kyc'
+    | '/profile/referral'
+    | '/profile/security'
+    | '/profile/transactions'
     | '/forget-password'
     | '/sign-in'
     | '/sign-up'
@@ -194,6 +275,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/_authenticated'
     | '/_unauthenticated'
+    | '/_authenticated/profile'
     | '/_authenticated/account/'
     | '/_authenticated/copy-trading/'
     | '/_authenticated/dashboard/'
@@ -204,6 +286,12 @@ export interface FileRouteTypes {
     | '/_unauthenticated/about-us/'
     | '/_unauthenticated/platform/'
     | '/_unauthenticated/trading/'
+    | '/_authenticated/profile/banks/'
+    | '/_authenticated/profile/crypto/'
+    | '/_authenticated/profile/kyc/'
+    | '/_authenticated/profile/referral/'
+    | '/_authenticated/profile/security/'
+    | '/_authenticated/profile/transactions/'
     | '/_unauthenticated/(auth)/forget-password/'
     | '/_unauthenticated/(auth)/sign-in/'
     | '/_unauthenticated/(auth)/sign-up/'
@@ -229,6 +317,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof UnauthenticatedRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/profile': {
+      id: '/_authenticated/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AuthenticatedProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/account/': {
       id: '/_authenticated/account/'
@@ -267,10 +362,10 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/profile/': {
       id: '/_authenticated/profile/'
-      path: '/profile'
+      path: '/'
       fullPath: '/profile/'
       preLoaderRoute: typeof AuthenticatedProfileIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      parentRoute: typeof AuthenticatedProfileRoute
     }
     '/_unauthenticated/(home)/': {
       id: '/_unauthenticated/(home)/'
@@ -300,6 +395,48 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UnauthenticatedTradingIndexRouteImport
       parentRoute: typeof UnauthenticatedRoute
     }
+    '/_authenticated/profile/banks/': {
+      id: '/_authenticated/profile/banks/'
+      path: '/banks'
+      fullPath: '/profile/banks/'
+      preLoaderRoute: typeof AuthenticatedProfileBanksIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRoute
+    }
+    '/_authenticated/profile/crypto/': {
+      id: '/_authenticated/profile/crypto/'
+      path: '/crypto'
+      fullPath: '/profile/crypto/'
+      preLoaderRoute: typeof AuthenticatedProfileCryptoIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRoute
+    }
+    '/_authenticated/profile/kyc/': {
+      id: '/_authenticated/profile/kyc/'
+      path: '/kyc'
+      fullPath: '/profile/kyc/'
+      preLoaderRoute: typeof AuthenticatedProfileKycIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRoute
+    }
+    '/_authenticated/profile/referral/': {
+      id: '/_authenticated/profile/referral/'
+      path: '/referral'
+      fullPath: '/profile/referral/'
+      preLoaderRoute: typeof AuthenticatedProfileReferralIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRoute
+    }
+    '/_authenticated/profile/security/': {
+      id: '/_authenticated/profile/security/'
+      path: '/security'
+      fullPath: '/profile/security/'
+      preLoaderRoute: typeof AuthenticatedProfileSecurityIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRoute
+    }
+    '/_authenticated/profile/transactions/': {
+      id: '/_authenticated/profile/transactions/'
+      path: '/transactions'
+      fullPath: '/profile/transactions/'
+      preLoaderRoute: typeof AuthenticatedProfileTransactionsIndexRouteImport
+      parentRoute: typeof AuthenticatedProfileRoute
+    }
     '/_unauthenticated/(auth)/forget-password/': {
       id: '/_unauthenticated/(auth)/forget-password/'
       path: '/forget-password'
@@ -324,22 +461,48 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface AuthenticatedProfileRouteChildren {
+  AuthenticatedProfileIndexRoute: typeof AuthenticatedProfileIndexRoute
+  AuthenticatedProfileBanksIndexRoute: typeof AuthenticatedProfileBanksIndexRoute
+  AuthenticatedProfileCryptoIndexRoute: typeof AuthenticatedProfileCryptoIndexRoute
+  AuthenticatedProfileKycIndexRoute: typeof AuthenticatedProfileKycIndexRoute
+  AuthenticatedProfileReferralIndexRoute: typeof AuthenticatedProfileReferralIndexRoute
+  AuthenticatedProfileSecurityIndexRoute: typeof AuthenticatedProfileSecurityIndexRoute
+  AuthenticatedProfileTransactionsIndexRoute: typeof AuthenticatedProfileTransactionsIndexRoute
+}
+
+const AuthenticatedProfileRouteChildren: AuthenticatedProfileRouteChildren = {
+  AuthenticatedProfileIndexRoute: AuthenticatedProfileIndexRoute,
+  AuthenticatedProfileBanksIndexRoute: AuthenticatedProfileBanksIndexRoute,
+  AuthenticatedProfileCryptoIndexRoute: AuthenticatedProfileCryptoIndexRoute,
+  AuthenticatedProfileKycIndexRoute: AuthenticatedProfileKycIndexRoute,
+  AuthenticatedProfileReferralIndexRoute:
+    AuthenticatedProfileReferralIndexRoute,
+  AuthenticatedProfileSecurityIndexRoute:
+    AuthenticatedProfileSecurityIndexRoute,
+  AuthenticatedProfileTransactionsIndexRoute:
+    AuthenticatedProfileTransactionsIndexRoute,
+}
+
+const AuthenticatedProfileRouteWithChildren =
+  AuthenticatedProfileRoute._addFileChildren(AuthenticatedProfileRouteChildren)
+
 interface AuthenticatedRouteChildren {
+  AuthenticatedProfileRoute: typeof AuthenticatedProfileRouteWithChildren
   AuthenticatedAccountIndexRoute: typeof AuthenticatedAccountIndexRoute
   AuthenticatedCopyTradingIndexRoute: typeof AuthenticatedCopyTradingIndexRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedFinancialIndexRoute: typeof AuthenticatedFinancialIndexRoute
   AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
-  AuthenticatedProfileIndexRoute: typeof AuthenticatedProfileIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedProfileRoute: AuthenticatedProfileRouteWithChildren,
   AuthenticatedAccountIndexRoute: AuthenticatedAccountIndexRoute,
   AuthenticatedCopyTradingIndexRoute: AuthenticatedCopyTradingIndexRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedFinancialIndexRoute: AuthenticatedFinancialIndexRoute,
   AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
-  AuthenticatedProfileIndexRoute: AuthenticatedProfileIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
