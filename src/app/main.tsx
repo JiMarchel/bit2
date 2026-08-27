@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom/client'
 import { RouterProvider } from '@tanstack/react-router'
 import { getRouter } from './router'
-import { ThemeProvider } from './providers/theme-provider'
+import { ThemeProvider } from './theme/theme-provider'
 import './styles/global.css'
 
 const router = getRouter()
