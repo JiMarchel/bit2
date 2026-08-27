@@ -9,6 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
+import { Route as UnauthenticatedRouteImport } from './routes/_unauthenticated'
+import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account/index'
+import { Route as AuthenticatedCopyTradingIndexRouteImport } from './routes/_authenticated/copy-trading/index'
+import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
+import { Route as AuthenticatedFinancialIndexRouteImport } from './routes/_authenticated/financial/index'
+import { Route as AuthenticatedIbIndexRouteImport } from './routes/_authenticated/ib/index'
+import { Route as AuthenticatedProfileIndexRouteImport } from './routes/_authenticated/profile/index'
 import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthenticated/(home)/index'
 import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
 import { Route as UnauthenticatedPlatformIndexRouteImport } from './routes/_unauthenticated/platform/index'
@@ -17,51 +25,100 @@ import { Route as UnauthenticatedauthForgetPasswordIndexRouteImport } from './ro
 import { Route as UnauthenticatedauthSignInIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-in/index'
 import { Route as UnauthenticatedauthSignUpIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-up/index'
 
+const AuthenticatedRoute = AuthenticatedRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const UnauthenticatedRoute = UnauthenticatedRouteImport.update({
+  id: '/_unauthenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedAccountIndexRoute =
+  AuthenticatedAccountIndexRouteImport.update({
+    id: '/account/',
+    path: '/account/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedCopyTradingIndexRoute =
+  AuthenticatedCopyTradingIndexRouteImport.update({
+    id: '/copy-trading/',
+    path: '/copy-trading/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedDashboardIndexRoute =
+  AuthenticatedDashboardIndexRouteImport.update({
+    id: '/dashboard/',
+    path: '/dashboard/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedFinancialIndexRoute =
+  AuthenticatedFinancialIndexRouteImport.update({
+    id: '/financial/',
+    path: '/financial/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedIbIndexRoute = AuthenticatedIbIndexRouteImport.update({
+  id: '/ib/',
+  path: '/ib/',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedProfileIndexRoute =
+  AuthenticatedProfileIndexRouteImport.update({
+    id: '/profile/',
+    path: '/profile/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const UnauthenticatedhomeIndexRoute =
   UnauthenticatedhomeIndexRouteImport.update({
-    id: '/_unauthenticated/(home)/',
+    id: '/(home)/',
     path: '/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 const UnauthenticatedAboutUsIndexRoute =
   UnauthenticatedAboutUsIndexRouteImport.update({
-    id: '/_unauthenticated/about-us/',
+    id: '/about-us/',
     path: '/about-us/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 const UnauthenticatedPlatformIndexRoute =
   UnauthenticatedPlatformIndexRouteImport.update({
-    id: '/_unauthenticated/platform/',
+    id: '/platform/',
     path: '/platform/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 const UnauthenticatedTradingIndexRoute =
   UnauthenticatedTradingIndexRouteImport.update({
-    id: '/_unauthenticated/trading/',
+    id: '/trading/',
     path: '/trading/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 const UnauthenticatedauthForgetPasswordIndexRoute =
   UnauthenticatedauthForgetPasswordIndexRouteImport.update({
-    id: '/_unauthenticated/(auth)/forget-password/',
+    id: '/(auth)/forget-password/',
     path: '/forget-password/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 const UnauthenticatedauthSignInIndexRoute =
   UnauthenticatedauthSignInIndexRouteImport.update({
-    id: '/_unauthenticated/(auth)/sign-in/',
+    id: '/(auth)/sign-in/',
     path: '/sign-in/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 const UnauthenticatedauthSignUpIndexRoute =
   UnauthenticatedauthSignUpIndexRouteImport.update({
-    id: '/_unauthenticated/(auth)/sign-up/',
+    id: '/(auth)/sign-up/',
     path: '/sign-up/',
-    getParentRoute: () => rootRouteImport,
+    getParentRoute: () => UnauthenticatedRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof UnauthenticatedhomeIndexRoute
+  '/account/': typeof AuthenticatedAccountIndexRoute
+  '/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
+  '/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/financial/': typeof AuthenticatedFinancialIndexRoute
+  '/ib/': typeof AuthenticatedIbIndexRoute
+  '/profile/': typeof AuthenticatedProfileIndexRoute
   '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/trading/': typeof UnauthenticatedTradingIndexRoute
@@ -71,6 +128,12 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof UnauthenticatedhomeIndexRoute
+  '/account': typeof AuthenticatedAccountIndexRoute
+  '/copy-trading': typeof AuthenticatedCopyTradingIndexRoute
+  '/dashboard': typeof AuthenticatedDashboardIndexRoute
+  '/financial': typeof AuthenticatedFinancialIndexRoute
+  '/ib': typeof AuthenticatedIbIndexRoute
+  '/profile': typeof AuthenticatedProfileIndexRoute
   '/about-us': typeof UnauthenticatedAboutUsIndexRoute
   '/platform': typeof UnauthenticatedPlatformIndexRoute
   '/trading': typeof UnauthenticatedTradingIndexRoute
@@ -80,6 +143,14 @@ export interface FileRoutesByTo {
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
+  '/_authenticated': typeof AuthenticatedRouteWithChildren
+  '/_unauthenticated': typeof UnauthenticatedRouteWithChildren
+  '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
+  '/_authenticated/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
+  '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
+  '/_authenticated/financial/': typeof AuthenticatedFinancialIndexRoute
+  '/_authenticated/ib/': typeof AuthenticatedIbIndexRoute
+  '/_authenticated/profile/': typeof AuthenticatedProfileIndexRoute
   '/_unauthenticated/(home)/': typeof UnauthenticatedhomeIndexRoute
   '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/_unauthenticated/platform/': typeof UnauthenticatedPlatformIndexRoute
@@ -92,6 +163,12 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/account/'
+    | '/copy-trading/'
+    | '/dashboard/'
+    | '/financial/'
+    | '/ib/'
+    | '/profile/'
     | '/about-us/'
     | '/platform/'
     | '/trading/'
@@ -101,6 +178,12 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/account'
+    | '/copy-trading'
+    | '/dashboard'
+    | '/financial'
+    | '/ib'
+    | '/profile'
     | '/about-us'
     | '/platform'
     | '/trading'
@@ -109,6 +192,14 @@ export interface FileRouteTypes {
     | '/sign-up'
   id:
     | '__root__'
+    | '/_authenticated'
+    | '/_unauthenticated'
+    | '/_authenticated/account/'
+    | '/_authenticated/copy-trading/'
+    | '/_authenticated/dashboard/'
+    | '/_authenticated/financial/'
+    | '/_authenticated/ib/'
+    | '/_authenticated/profile/'
     | '/_unauthenticated/(home)/'
     | '/_unauthenticated/about-us/'
     | '/_unauthenticated/platform/'
@@ -119,6 +210,143 @@ export interface FileRouteTypes {
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
+  AuthenticatedRoute: typeof AuthenticatedRouteWithChildren
+  UnauthenticatedRoute: typeof UnauthenticatedRouteWithChildren
+}
+
+declare module '@tanstack/react-router' {
+  interface FileRoutesByPath {
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_unauthenticated': {
+      id: '/_unauthenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof UnauthenticatedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/account/': {
+      id: '/_authenticated/account/'
+      path: '/account'
+      fullPath: '/account/'
+      preLoaderRoute: typeof AuthenticatedAccountIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/copy-trading/': {
+      id: '/_authenticated/copy-trading/'
+      path: '/copy-trading'
+      fullPath: '/copy-trading/'
+      preLoaderRoute: typeof AuthenticatedCopyTradingIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/dashboard/': {
+      id: '/_authenticated/dashboard/'
+      path: '/dashboard'
+      fullPath: '/dashboard/'
+      preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/financial/': {
+      id: '/_authenticated/financial/'
+      path: '/financial'
+      fullPath: '/financial/'
+      preLoaderRoute: typeof AuthenticatedFinancialIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/ib/': {
+      id: '/_authenticated/ib/'
+      path: '/ib'
+      fullPath: '/ib/'
+      preLoaderRoute: typeof AuthenticatedIbIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/profile/': {
+      id: '/_authenticated/profile/'
+      path: '/profile'
+      fullPath: '/profile/'
+      preLoaderRoute: typeof AuthenticatedProfileIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_unauthenticated/(home)/': {
+      id: '/_unauthenticated/(home)/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof UnauthenticatedhomeIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_unauthenticated/about-us/': {
+      id: '/_unauthenticated/about-us/'
+      path: '/about-us'
+      fullPath: '/about-us/'
+      preLoaderRoute: typeof UnauthenticatedAboutUsIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_unauthenticated/platform/': {
+      id: '/_unauthenticated/platform/'
+      path: '/platform'
+      fullPath: '/platform/'
+      preLoaderRoute: typeof UnauthenticatedPlatformIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_unauthenticated/trading/': {
+      id: '/_unauthenticated/trading/'
+      path: '/trading'
+      fullPath: '/trading/'
+      preLoaderRoute: typeof UnauthenticatedTradingIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_unauthenticated/(auth)/forget-password/': {
+      id: '/_unauthenticated/(auth)/forget-password/'
+      path: '/forget-password'
+      fullPath: '/forget-password/'
+      preLoaderRoute: typeof UnauthenticatedauthForgetPasswordIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_unauthenticated/(auth)/sign-in/': {
+      id: '/_unauthenticated/(auth)/sign-in/'
+      path: '/sign-in'
+      fullPath: '/sign-in/'
+      preLoaderRoute: typeof UnauthenticatedauthSignInIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_unauthenticated/(auth)/sign-up/': {
+      id: '/_unauthenticated/(auth)/sign-up/'
+      path: '/sign-up'
+      fullPath: '/sign-up/'
+      preLoaderRoute: typeof UnauthenticatedauthSignUpIndexRouteImport
+      parentRoute: typeof UnauthenticatedRoute
+    }
+  }
+}
+
+interface AuthenticatedRouteChildren {
+  AuthenticatedAccountIndexRoute: typeof AuthenticatedAccountIndexRoute
+  AuthenticatedCopyTradingIndexRoute: typeof AuthenticatedCopyTradingIndexRoute
+  AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
+  AuthenticatedFinancialIndexRoute: typeof AuthenticatedFinancialIndexRoute
+  AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
+  AuthenticatedProfileIndexRoute: typeof AuthenticatedProfileIndexRoute
+}
+
+const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedAccountIndexRoute: AuthenticatedAccountIndexRoute,
+  AuthenticatedCopyTradingIndexRoute: AuthenticatedCopyTradingIndexRoute,
+  AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
+  AuthenticatedFinancialIndexRoute: AuthenticatedFinancialIndexRoute,
+  AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
+  AuthenticatedProfileIndexRoute: AuthenticatedProfileIndexRoute,
+}
+
+const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(
+  AuthenticatedRouteChildren,
+)
+
+interface UnauthenticatedRouteChildren {
   UnauthenticatedhomeIndexRoute: typeof UnauthenticatedhomeIndexRoute
   UnauthenticatedAboutUsIndexRoute: typeof UnauthenticatedAboutUsIndexRoute
   UnauthenticatedPlatformIndexRoute: typeof UnauthenticatedPlatformIndexRoute
@@ -128,61 +356,7 @@ export interface RootRouteChildren {
   UnauthenticatedauthSignUpIndexRoute: typeof UnauthenticatedauthSignUpIndexRoute
 }
 
-declare module '@tanstack/react-router' {
-  interface FileRoutesByPath {
-    '/_unauthenticated/(home)/': {
-      id: '/_unauthenticated/(home)/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof UnauthenticatedhomeIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_unauthenticated/about-us/': {
-      id: '/_unauthenticated/about-us/'
-      path: '/about-us'
-      fullPath: '/about-us/'
-      preLoaderRoute: typeof UnauthenticatedAboutUsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_unauthenticated/platform/': {
-      id: '/_unauthenticated/platform/'
-      path: '/platform'
-      fullPath: '/platform/'
-      preLoaderRoute: typeof UnauthenticatedPlatformIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_unauthenticated/trading/': {
-      id: '/_unauthenticated/trading/'
-      path: '/trading'
-      fullPath: '/trading/'
-      preLoaderRoute: typeof UnauthenticatedTradingIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_unauthenticated/(auth)/forget-password/': {
-      id: '/_unauthenticated/(auth)/forget-password/'
-      path: '/forget-password'
-      fullPath: '/forget-password/'
-      preLoaderRoute: typeof UnauthenticatedauthForgetPasswordIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_unauthenticated/(auth)/sign-in/': {
-      id: '/_unauthenticated/(auth)/sign-in/'
-      path: '/sign-in'
-      fullPath: '/sign-in/'
-      preLoaderRoute: typeof UnauthenticatedauthSignInIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_unauthenticated/(auth)/sign-up/': {
-      id: '/_unauthenticated/(auth)/sign-up/'
-      path: '/sign-up'
-      fullPath: '/sign-up/'
-      preLoaderRoute: typeof UnauthenticatedauthSignUpIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-  }
-}
-
-const rootRouteChildren: RootRouteChildren = {
+const UnauthenticatedRouteChildren: UnauthenticatedRouteChildren = {
   UnauthenticatedhomeIndexRoute: UnauthenticatedhomeIndexRoute,
   UnauthenticatedAboutUsIndexRoute: UnauthenticatedAboutUsIndexRoute,
   UnauthenticatedPlatformIndexRoute: UnauthenticatedPlatformIndexRoute,
@@ -191,6 +365,15 @@ const rootRouteChildren: RootRouteChildren = {
     UnauthenticatedauthForgetPasswordIndexRoute,
   UnauthenticatedauthSignInIndexRoute: UnauthenticatedauthSignInIndexRoute,
   UnauthenticatedauthSignUpIndexRoute: UnauthenticatedauthSignUpIndexRoute,
+}
+
+const UnauthenticatedRouteWithChildren = UnauthenticatedRoute._addFileChildren(
+  UnauthenticatedRouteChildren,
+)
+
+const rootRouteChildren: RootRouteChildren = {
+  AuthenticatedRoute: AuthenticatedRouteWithChildren,
+  UnauthenticatedRoute: UnauthenticatedRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

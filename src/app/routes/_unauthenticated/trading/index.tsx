@@ -1,4 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { TradingPage } from '@/pages/trading'
+import { TradingPage } from '@/pages/unathenticated/trading'
 
 export const Route = createFileRoute('/_unauthenticated/trading/')({ component: TradingPage })
