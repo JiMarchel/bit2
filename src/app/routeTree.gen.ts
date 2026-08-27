@@ -9,77 +9,84 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as homeIndexRouteImport } from './routes/(home)/index'
-import { Route as AboutUsIndexRouteImport } from './routes/about-us/index'
-import { Route as PlatformIndexRouteImport } from './routes/platform/index'
-import { Route as TradingIndexRouteImport } from './routes/trading/index'
-import { Route as authForgetPasswordIndexRouteImport } from './routes/(auth)/forget-password/index'
-import { Route as authSignInIndexRouteImport } from './routes/(auth)/sign-in/index'
-import { Route as authSignUpIndexRouteImport } from './routes/(auth)/sign-up/index'
+import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthenticated/(home)/index'
+import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
+import { Route as UnauthenticatedPlatformIndexRouteImport } from './routes/_unauthenticated/platform/index'
+import { Route as UnauthenticatedTradingIndexRouteImport } from './routes/_unauthenticated/trading/index'
+import { Route as UnauthenticatedauthForgetPasswordIndexRouteImport } from './routes/_unauthenticated/(auth)/forget-password/index'
+import { Route as UnauthenticatedauthSignInIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-in/index'
+import { Route as UnauthenticatedauthSignUpIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-up/index'
 
-const homeIndexRoute = homeIndexRouteImport.update({
-  id: '/(home)/',
-  path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutUsIndexRoute = AboutUsIndexRouteImport.update({
-  id: '/about-us/',
-  path: '/about-us/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PlatformIndexRoute = PlatformIndexRouteImport.update({
-  id: '/platform/',
-  path: '/platform/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const TradingIndexRoute = TradingIndexRouteImport.update({
-  id: '/trading/',
-  path: '/trading/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authForgetPasswordIndexRoute = authForgetPasswordIndexRouteImport.update({
-  id: '/(auth)/forget-password/',
-  path: '/forget-password/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authSignInIndexRoute = authSignInIndexRouteImport.update({
-  id: '/(auth)/sign-in/',
-  path: '/sign-in/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authSignUpIndexRoute = authSignUpIndexRouteImport.update({
-  id: '/(auth)/sign-up/',
-  path: '/sign-up/',
-  getParentRoute: () => rootRouteImport,
-} as any)
+const UnauthenticatedhomeIndexRoute =
+  UnauthenticatedhomeIndexRouteImport.update({
+    id: '/_unauthenticated/(home)/',
+    path: '/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UnauthenticatedAboutUsIndexRoute =
+  UnauthenticatedAboutUsIndexRouteImport.update({
+    id: '/_unauthenticated/about-us/',
+    path: '/about-us/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UnauthenticatedPlatformIndexRoute =
+  UnauthenticatedPlatformIndexRouteImport.update({
+    id: '/_unauthenticated/platform/',
+    path: '/platform/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UnauthenticatedTradingIndexRoute =
+  UnauthenticatedTradingIndexRouteImport.update({
+    id: '/_unauthenticated/trading/',
+    path: '/trading/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UnauthenticatedauthForgetPasswordIndexRoute =
+  UnauthenticatedauthForgetPasswordIndexRouteImport.update({
+    id: '/_unauthenticated/(auth)/forget-password/',
+    path: '/forget-password/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UnauthenticatedauthSignInIndexRoute =
+  UnauthenticatedauthSignInIndexRouteImport.update({
+    id: '/_unauthenticated/(auth)/sign-in/',
+    path: '/sign-in/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const UnauthenticatedauthSignUpIndexRoute =
+  UnauthenticatedauthSignUpIndexRouteImport.update({
+    id: '/_unauthenticated/(auth)/sign-up/',
+    path: '/sign-up/',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 
 export interface FileRoutesByFullPath {
-  '/': typeof homeIndexRoute
-  '/about-us/': typeof AboutUsIndexRoute
-  '/platform/': typeof PlatformIndexRoute
-  '/trading/': typeof TradingIndexRoute
-  '/forget-password/': typeof authForgetPasswordIndexRoute
-  '/sign-in/': typeof authSignInIndexRoute
-  '/sign-up/': typeof authSignUpIndexRoute
+  '/': typeof UnauthenticatedhomeIndexRoute
+  '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
+  '/platform/': typeof UnauthenticatedPlatformIndexRoute
+  '/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/forget-password/': typeof UnauthenticatedauthForgetPasswordIndexRoute
+  '/sign-in/': typeof UnauthenticatedauthSignInIndexRoute
+  '/sign-up/': typeof UnauthenticatedauthSignUpIndexRoute
 }
 export interface FileRoutesByTo {
-  '/': typeof homeIndexRoute
-  '/about-us': typeof AboutUsIndexRoute
-  '/platform': typeof PlatformIndexRoute
-  '/trading': typeof TradingIndexRoute
-  '/forget-password': typeof authForgetPasswordIndexRoute
-  '/sign-in': typeof authSignInIndexRoute
-  '/sign-up': typeof authSignUpIndexRoute
+  '/': typeof UnauthenticatedhomeIndexRoute
+  '/about-us': typeof UnauthenticatedAboutUsIndexRoute
+  '/platform': typeof UnauthenticatedPlatformIndexRoute
+  '/trading': typeof UnauthenticatedTradingIndexRoute
+  '/forget-password': typeof UnauthenticatedauthForgetPasswordIndexRoute
+  '/sign-in': typeof UnauthenticatedauthSignInIndexRoute
+  '/sign-up': typeof UnauthenticatedauthSignUpIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
-  '/(home)/': typeof homeIndexRoute
-  '/about-us/': typeof AboutUsIndexRoute
-  '/platform/': typeof PlatformIndexRoute
-  '/trading/': typeof TradingIndexRoute
-  '/(auth)/forget-password/': typeof authForgetPasswordIndexRoute
-  '/(auth)/sign-in/': typeof authSignInIndexRoute
-  '/(auth)/sign-up/': typeof authSignUpIndexRoute
+  '/_unauthenticated/(home)/': typeof UnauthenticatedhomeIndexRoute
+  '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
+  '/_unauthenticated/platform/': typeof UnauthenticatedPlatformIndexRoute
+  '/_unauthenticated/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/_unauthenticated/(auth)/forget-password/': typeof UnauthenticatedauthForgetPasswordIndexRoute
+  '/_unauthenticated/(auth)/sign-in/': typeof UnauthenticatedauthSignInIndexRoute
+  '/_unauthenticated/(auth)/sign-up/': typeof UnauthenticatedauthSignUpIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -102,87 +109,88 @@ export interface FileRouteTypes {
     | '/sign-up'
   id:
     | '__root__'
-    | '/(home)/'
-    | '/about-us/'
-    | '/platform/'
-    | '/trading/'
-    | '/(auth)/forget-password/'
-    | '/(auth)/sign-in/'
-    | '/(auth)/sign-up/'
+    | '/_unauthenticated/(home)/'
+    | '/_unauthenticated/about-us/'
+    | '/_unauthenticated/platform/'
+    | '/_unauthenticated/trading/'
+    | '/_unauthenticated/(auth)/forget-password/'
+    | '/_unauthenticated/(auth)/sign-in/'
+    | '/_unauthenticated/(auth)/sign-up/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
-  homeIndexRoute: typeof homeIndexRoute
-  AboutUsIndexRoute: typeof AboutUsIndexRoute
-  PlatformIndexRoute: typeof PlatformIndexRoute
-  TradingIndexRoute: typeof TradingIndexRoute
-  authForgetPasswordIndexRoute: typeof authForgetPasswordIndexRoute
-  authSignInIndexRoute: typeof authSignInIndexRoute
-  authSignUpIndexRoute: typeof authSignUpIndexRoute
+  UnauthenticatedhomeIndexRoute: typeof UnauthenticatedhomeIndexRoute
+  UnauthenticatedAboutUsIndexRoute: typeof UnauthenticatedAboutUsIndexRoute
+  UnauthenticatedPlatformIndexRoute: typeof UnauthenticatedPlatformIndexRoute
+  UnauthenticatedTradingIndexRoute: typeof UnauthenticatedTradingIndexRoute
+  UnauthenticatedauthForgetPasswordIndexRoute: typeof UnauthenticatedauthForgetPasswordIndexRoute
+  UnauthenticatedauthSignInIndexRoute: typeof UnauthenticatedauthSignInIndexRoute
+  UnauthenticatedauthSignUpIndexRoute: typeof UnauthenticatedauthSignUpIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/(home)/': {
-      id: '/(home)/'
+    '/_unauthenticated/(home)/': {
+      id: '/_unauthenticated/(home)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof homeIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedhomeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/about-us/': {
-      id: '/about-us/'
+    '/_unauthenticated/about-us/': {
+      id: '/_unauthenticated/about-us/'
       path: '/about-us'
       fullPath: '/about-us/'
-      preLoaderRoute: typeof AboutUsIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedAboutUsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/platform/': {
-      id: '/platform/'
+    '/_unauthenticated/platform/': {
+      id: '/_unauthenticated/platform/'
       path: '/platform'
       fullPath: '/platform/'
-      preLoaderRoute: typeof PlatformIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedPlatformIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/trading/': {
-      id: '/trading/'
+    '/_unauthenticated/trading/': {
+      id: '/_unauthenticated/trading/'
       path: '/trading'
       fullPath: '/trading/'
-      preLoaderRoute: typeof TradingIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedTradingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth)/forget-password/': {
-      id: '/(auth)/forget-password/'
+    '/_unauthenticated/(auth)/forget-password/': {
+      id: '/_unauthenticated/(auth)/forget-password/'
       path: '/forget-password'
       fullPath: '/forget-password/'
-      preLoaderRoute: typeof authForgetPasswordIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedauthForgetPasswordIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth)/sign-in/': {
-      id: '/(auth)/sign-in/'
+    '/_unauthenticated/(auth)/sign-in/': {
+      id: '/_unauthenticated/(auth)/sign-in/'
       path: '/sign-in'
       fullPath: '/sign-in/'
-      preLoaderRoute: typeof authSignInIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedauthSignInIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth)/sign-up/': {
-      id: '/(auth)/sign-up/'
+    '/_unauthenticated/(auth)/sign-up/': {
+      id: '/_unauthenticated/(auth)/sign-up/'
       path: '/sign-up'
       fullPath: '/sign-up/'
-      preLoaderRoute: typeof authSignUpIndexRouteImport
+      preLoaderRoute: typeof UnauthenticatedauthSignUpIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  homeIndexRoute: homeIndexRoute,
-  AboutUsIndexRoute: AboutUsIndexRoute,
-  PlatformIndexRoute: PlatformIndexRoute,
-  TradingIndexRoute: TradingIndexRoute,
-  authForgetPasswordIndexRoute: authForgetPasswordIndexRoute,
-  authSignInIndexRoute: authSignInIndexRoute,
-  authSignUpIndexRoute: authSignUpIndexRoute,
+  UnauthenticatedhomeIndexRoute: UnauthenticatedhomeIndexRoute,
+  UnauthenticatedAboutUsIndexRoute: UnauthenticatedAboutUsIndexRoute,
+  UnauthenticatedPlatformIndexRoute: UnauthenticatedPlatformIndexRoute,
+  UnauthenticatedTradingIndexRoute: UnauthenticatedTradingIndexRoute,
+  UnauthenticatedauthForgetPasswordIndexRoute:
+    UnauthenticatedauthForgetPasswordIndexRoute,
+  UnauthenticatedauthSignInIndexRoute: UnauthenticatedauthSignInIndexRoute,
+  UnauthenticatedauthSignUpIndexRoute: UnauthenticatedauthSignUpIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

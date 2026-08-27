@@ -5,7 +5,7 @@ import { Link } from "@tanstack/react-router";
 
 export function ForgetPasswordForm() {
     return (
-        <div className="flex flex-col items-center w-full max-w-[450px] relative text-center">
+        <div className="flex flex-col items-center w-full max-w-112.5 relative text-center">
             <h1 className="text-white text-4xl md:text-[52px] font-bold mb-4 tracking-tight">Forgot Password</h1>
             <p className="text-gray-400 mb-10 text-sm md:text-base">Fill email field, we will send you link verification</p>
 
