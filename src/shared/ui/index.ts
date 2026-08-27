@@ -53,6 +53,18 @@ export {
   SheetTrigger,
 } from './sheet';
 export { default as Silk, type SilkProps } from './silk';
+export { DataTable } from './data-table';
+export type { ColumnDef } from '@tanstack/react-table';
+export {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from './table';
 export {
   Select,
   SelectContent,
