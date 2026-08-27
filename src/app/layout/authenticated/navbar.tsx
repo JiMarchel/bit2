@@ -20,6 +20,7 @@ import {
 } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
 import { Wallet, TrendingUp, Users } from "lucide-react";
+import { ModeToggle } from "../mode-toggle";
 
 const navItems = [
   { label: "Dashboard", to: "/dashboard", icon: Home },
@@ -100,6 +101,8 @@ export function AuthenticatedNavbar() {
               </SheetContent>
             </Sheet>
           </div>
+
+          <ModeToggle />
 
           <DropdownMenu>
             <DropdownMenuTrigger className="rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50">
