@@ -1,7 +1,8 @@
+import { copyToClipboard } from "@/shared/lib/copy-to-clipboard";
 import { Button, Field, FieldGroup, FieldLabel, Input } from "@/shared/ui";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/shared/ui/card";
-
-
+import { InputGroup, InputGroupButton, InputGroupInput } from "@/shared/ui/input-group";
+import { Copy } from "lucide-react";
 
 export function ReferralPage() {
   return (
@@ -20,11 +21,20 @@ export function ReferralPage() {
 
           <Field className="col-span-2">
             <FieldLabel htmlFor="referralLink">Referral Link</FieldLabel>
-            <Input
-              id="referralLink"
-              name="referralLink"
-              defaultValue={"https://bit2.com"}
-            />
+            <InputGroup>
+              <InputGroupInput
+                id="referralLink"
+                name="referralLink"
+                defaultValue={"https://bit2.com"}
+                readOnly
+              />
+              <InputGroupButton
+                size="icon-sm"
+                onClick={() => copyToClipboard("https://bit2.com", "Copied", "Referral link copied to clipboard")}
+              >
+                <Copy />
+              </InputGroupButton>
+            </InputGroup>
           </Field>
         </FieldGroup>
         <div className="flex justify-end">
