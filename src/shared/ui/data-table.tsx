@@ -4,6 +4,7 @@ import {
   type SortingState,
   flexRender,
   getCoreRowModel,
+  getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table"
@@ -17,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/shared/ui/table"
+import { Button } from "@/shared/ui/button"
 import { cn } from "@/shared/lib/cn"
 
 interface DataTableProps<TData, TValue> {
@@ -26,6 +28,8 @@ interface DataTableProps<TData, TValue> {
   showEntriesCount?: boolean
   /** Message shown when there are no rows. */
   emptyMessage?: string
+  /** Rows per page. Omit to disable pagination (show all rows). */
+  pageSize?: number
 }
 
 export function DataTable<TData, TValue>({
@@ -33,8 +37,10 @@ export function DataTable<TData, TValue>({
   data,
   showEntriesCount = true,
   emptyMessage = "No results.",
+  pageSize,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
+  const paginated = pageSize != null
 
   const table = useReactTable({
     data,
@@ -43,6 +49,12 @@ export function DataTable<TData, TValue>({
     onSortingChange: setSorting,
     getCoreRowModel: getCoreRowModel(),
     getSortedRowModel: getSortedRowModel(),
+    ...(paginated
+      ? {
+          getPaginationRowModel: getPaginationRowModel(),
+          initialState: { pagination: { pageSize } },
+        }
+      : {}),
   })
 
   const rows = table.getRowModel().rows
@@ -127,10 +139,58 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
 
-      {showEntriesCount && rows.length > 0 && (
-        <p className="text-sm text-muted-foreground">
-          Showing 1 to {rows.length} of {rows.length} entries
-        </p>
+      {(showEntriesCount || (paginated && table.getPageCount() > 1)) && (
+        <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
+          {showEntriesCount &&
+            (() => {
+              const total = table.getFilteredRowModel().rows.length
+              const { pageIndex, pageSize: ps } = table.getState().pagination
+              const start = total === 0 ? 0 : paginated ? pageIndex * ps + 1 : 1
+              const end = paginated
+                ? Math.min(total, (pageIndex + 1) * ps)
+                : rows.length
+              return (
+                <p className="text-sm text-muted-foreground">
+                  Showing {start} to {end} of {total} entries
+                </p>
+              )
+            })()}
+
+          {paginated && table.getPageCount() > 1 && (
+            <div className="flex flex-wrap items-center gap-1">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => table.previousPage()}
+                disabled={!table.getCanPreviousPage()}
+              >
+                ← Previous
+              </Button>
+              {Array.from({ length: table.getPageCount() }, (_, i) => (
+                <Button
+                  key={i}
+                  variant={
+                    table.getState().pagination.pageIndex === i
+                      ? "default"
+                      : "outline"
+                  }
+                  size="sm"
+                  onClick={() => table.setPageIndex(i)}
+                >
+                  {i + 1}
+                </Button>
+              ))}
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => table.nextPage()}
+                disabled={!table.getCanNextPage()}
+              >
+                Next →
+              </Button>
+            </div>
+          )}
+        </div>
       )}
     </div>
   )
