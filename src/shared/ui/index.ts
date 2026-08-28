@@ -23,6 +23,7 @@ export {
   FieldTitle,
 } from './field';
 export { Input } from './input';
+export { ImageDropzone } from './image-dropzone';
 export { Label } from './label';
 export {
   DropdownMenu,
