@@ -1,0 +1,29 @@
+export const USERS_ACCOUNTS = [
+    {
+      login: "10009",
+      rate: "Floating",
+      leverage: "1:500",
+      accountType: "Classic Standard (USD)",
+      balance: "$5,70",
+      equity: "$16,74",
+      status: "Active",
+    },
+    {
+      login: "10010",
+      rate: "Fixed",
+      leverage: "1:200",
+      accountType: "Standard IDR (IDR)",
+      balance: "Rp107,000",
+      equity: "Rp10,674,000",
+      status: "Active",
+    },
+    {
+      login: "10010",
+      rate: "Fixed",
+      leverage: "1:100",
+      accountType: "Classic Pro (USD)",
+      balance: "$500",
+      equity: "$1006,74",
+      status: "Active",
+    },
+  ]
