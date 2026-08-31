@@ -1,4 +1,4 @@
-import { BalanceCard } from "./balance-card";
+import { BalanceCard } from "@/features/account-balance";
 import { SummaryCards } from "./summary-cards";
 import { MarketAnalysis } from "./market-analysis";
 import { TransactionHistory } from "./transaction-history";
