@@ -15,7 +15,6 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account/index'
 import { Route as AuthenticatedCopyTradingIndexRouteImport } from './routes/_authenticated/copy-trading/index'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
-import { Route as AuthenticatedFinancialIndexRouteImport } from './routes/_authenticated/financial/index'
 import { Route as AuthenticatedIbIndexRouteImport } from './routes/_authenticated/ib/index'
 import { Route as AuthenticatedMarketAnalysisIndexRouteImport } from './routes/_authenticated/market-analysis/index'
 import { Route as AuthenticatedProfileIndexRouteImport } from './routes/_authenticated/profile/index'
@@ -23,6 +22,10 @@ import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthen
 import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
 import { Route as UnauthenticatedPlatformIndexRouteImport } from './routes/_unauthenticated/platform/index'
 import { Route as UnauthenticatedTradingIndexRouteImport } from './routes/_unauthenticated/trading/index'
+import { Route as AuthenticatedFinancialDepositIndexRouteImport } from './routes/_authenticated/_financial/deposit/index'
+import { Route as AuthenticatedFinancialInternalTransferIndexRouteImport } from './routes/_authenticated/_financial/internal-transfer/index'
+import { Route as AuthenticatedFinancialMyWalletIndexRouteImport } from './routes/_authenticated/_financial/my-wallet/index'
+import { Route as AuthenticatedFinancialWithdrawalIndexRouteImport } from './routes/_authenticated/_financial/withdrawal/index'
 import { Route as AuthenticatedAccountIdIndexRouteImport } from './routes/_authenticated/account/$id/index'
 import { Route as AuthenticatedProfileBanksIndexRouteImport } from './routes/_authenticated/profile/banks/index'
 import { Route as AuthenticatedProfileCryptoIndexRouteImport } from './routes/_authenticated/profile/crypto/index'
@@ -65,12 +68,6 @@ const AuthenticatedDashboardIndexRoute =
     path: '/dashboard/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedFinancialIndexRoute =
-  AuthenticatedFinancialIndexRouteImport.update({
-    id: '/financial/',
-    path: '/financial/',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
 const AuthenticatedIbIndexRoute = AuthenticatedIbIndexRouteImport.update({
   id: '/ib/',
   path: '/ib/',
@@ -111,6 +108,30 @@ const UnauthenticatedTradingIndexRoute =
     id: '/trading/',
     path: '/trading/',
     getParentRoute: () => UnauthenticatedRoute,
+  } as any)
+const AuthenticatedFinancialDepositIndexRoute =
+  AuthenticatedFinancialDepositIndexRouteImport.update({
+    id: '/_financial/deposit/',
+    path: '/deposit/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedFinancialInternalTransferIndexRoute =
+  AuthenticatedFinancialInternalTransferIndexRouteImport.update({
+    id: '/_financial/internal-transfer/',
+    path: '/internal-transfer/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedFinancialMyWalletIndexRoute =
+  AuthenticatedFinancialMyWalletIndexRouteImport.update({
+    id: '/_financial/my-wallet/',
+    path: '/my-wallet/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedFinancialWithdrawalIndexRoute =
+  AuthenticatedFinancialWithdrawalIndexRouteImport.update({
+    id: '/_financial/withdrawal/',
+    path: '/withdrawal/',
+    getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedAccountIdIndexRoute =
   AuthenticatedAccountIdIndexRouteImport.update({
@@ -179,13 +200,16 @@ export interface FileRoutesByFullPath {
   '/account/': typeof AuthenticatedAccountIndexRoute
   '/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
-  '/financial/': typeof AuthenticatedFinancialIndexRoute
   '/ib/': typeof AuthenticatedIbIndexRoute
   '/market-analysis/': typeof AuthenticatedMarketAnalysisIndexRoute
   '/profile/': typeof AuthenticatedProfileIndexRoute
   '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/deposit/': typeof AuthenticatedFinancialDepositIndexRoute
+  '/internal-transfer/': typeof AuthenticatedFinancialInternalTransferIndexRoute
+  '/my-wallet/': typeof AuthenticatedFinancialMyWalletIndexRoute
+  '/withdrawal/': typeof AuthenticatedFinancialWithdrawalIndexRoute
   '/account/$id/': typeof AuthenticatedAccountIdIndexRoute
   '/profile/banks/': typeof AuthenticatedProfileBanksIndexRoute
   '/profile/crypto/': typeof AuthenticatedProfileCryptoIndexRoute
@@ -202,13 +226,16 @@ export interface FileRoutesByTo {
   '/account': typeof AuthenticatedAccountIndexRoute
   '/copy-trading': typeof AuthenticatedCopyTradingIndexRoute
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
-  '/financial': typeof AuthenticatedFinancialIndexRoute
   '/ib': typeof AuthenticatedIbIndexRoute
   '/market-analysis': typeof AuthenticatedMarketAnalysisIndexRoute
   '/profile': typeof AuthenticatedProfileIndexRoute
   '/about-us': typeof UnauthenticatedAboutUsIndexRoute
   '/platform': typeof UnauthenticatedPlatformIndexRoute
   '/trading': typeof UnauthenticatedTradingIndexRoute
+  '/deposit': typeof AuthenticatedFinancialDepositIndexRoute
+  '/internal-transfer': typeof AuthenticatedFinancialInternalTransferIndexRoute
+  '/my-wallet': typeof AuthenticatedFinancialMyWalletIndexRoute
+  '/withdrawal': typeof AuthenticatedFinancialWithdrawalIndexRoute
   '/account/$id': typeof AuthenticatedAccountIdIndexRoute
   '/profile/banks': typeof AuthenticatedProfileBanksIndexRoute
   '/profile/crypto': typeof AuthenticatedProfileCryptoIndexRoute
@@ -228,7 +255,6 @@ export interface FileRoutesById {
   '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
   '/_authenticated/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
-  '/_authenticated/financial/': typeof AuthenticatedFinancialIndexRoute
   '/_authenticated/ib/': typeof AuthenticatedIbIndexRoute
   '/_authenticated/market-analysis/': typeof AuthenticatedMarketAnalysisIndexRoute
   '/_authenticated/profile/': typeof AuthenticatedProfileIndexRoute
@@ -236,6 +262,10 @@ export interface FileRoutesById {
   '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/_unauthenticated/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/_unauthenticated/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/_authenticated/_financial/deposit/': typeof AuthenticatedFinancialDepositIndexRoute
+  '/_authenticated/_financial/internal-transfer/': typeof AuthenticatedFinancialInternalTransferIndexRoute
+  '/_authenticated/_financial/my-wallet/': typeof AuthenticatedFinancialMyWalletIndexRoute
+  '/_authenticated/_financial/withdrawal/': typeof AuthenticatedFinancialWithdrawalIndexRoute
   '/_authenticated/account/$id/': typeof AuthenticatedAccountIdIndexRoute
   '/_authenticated/profile/banks/': typeof AuthenticatedProfileBanksIndexRoute
   '/_authenticated/profile/crypto/': typeof AuthenticatedProfileCryptoIndexRoute
@@ -255,13 +285,16 @@ export interface FileRouteTypes {
     | '/account/'
     | '/copy-trading/'
     | '/dashboard/'
-    | '/financial/'
     | '/ib/'
     | '/market-analysis/'
     | '/profile/'
     | '/about-us/'
     | '/platform/'
     | '/trading/'
+    | '/deposit/'
+    | '/internal-transfer/'
+    | '/my-wallet/'
+    | '/withdrawal/'
     | '/account/$id/'
     | '/profile/banks/'
     | '/profile/crypto/'
@@ -278,13 +311,16 @@ export interface FileRouteTypes {
     | '/account'
     | '/copy-trading'
     | '/dashboard'
-    | '/financial'
     | '/ib'
     | '/market-analysis'
     | '/profile'
     | '/about-us'
     | '/platform'
     | '/trading'
+    | '/deposit'
+    | '/internal-transfer'
+    | '/my-wallet'
+    | '/withdrawal'
     | '/account/$id'
     | '/profile/banks'
     | '/profile/crypto'
@@ -303,7 +339,6 @@ export interface FileRouteTypes {
     | '/_authenticated/account/'
     | '/_authenticated/copy-trading/'
     | '/_authenticated/dashboard/'
-    | '/_authenticated/financial/'
     | '/_authenticated/ib/'
     | '/_authenticated/market-analysis/'
     | '/_authenticated/profile/'
@@ -311,6 +346,10 @@ export interface FileRouteTypes {
     | '/_unauthenticated/about-us/'
     | '/_unauthenticated/platform/'
     | '/_unauthenticated/trading/'
+    | '/_authenticated/_financial/deposit/'
+    | '/_authenticated/_financial/internal-transfer/'
+    | '/_authenticated/_financial/my-wallet/'
+    | '/_authenticated/_financial/withdrawal/'
     | '/_authenticated/account/$id/'
     | '/_authenticated/profile/banks/'
     | '/_authenticated/profile/crypto/'
@@ -372,13 +411,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/financial/': {
-      id: '/_authenticated/financial/'
-      path: '/financial'
-      fullPath: '/financial/'
-      preLoaderRoute: typeof AuthenticatedFinancialIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
     '/_authenticated/ib/': {
       id: '/_authenticated/ib/'
       path: '/ib'
@@ -427,6 +459,34 @@ declare module '@tanstack/react-router' {
       fullPath: '/trading/'
       preLoaderRoute: typeof UnauthenticatedTradingIndexRouteImport
       parentRoute: typeof UnauthenticatedRoute
+    }
+    '/_authenticated/_financial/deposit/': {
+      id: '/_authenticated/_financial/deposit/'
+      path: '/deposit'
+      fullPath: '/deposit/'
+      preLoaderRoute: typeof AuthenticatedFinancialDepositIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_financial/internal-transfer/': {
+      id: '/_authenticated/_financial/internal-transfer/'
+      path: '/internal-transfer'
+      fullPath: '/internal-transfer/'
+      preLoaderRoute: typeof AuthenticatedFinancialInternalTransferIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_financial/my-wallet/': {
+      id: '/_authenticated/_financial/my-wallet/'
+      path: '/my-wallet'
+      fullPath: '/my-wallet/'
+      preLoaderRoute: typeof AuthenticatedFinancialMyWalletIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/_financial/withdrawal/': {
+      id: '/_authenticated/_financial/withdrawal/'
+      path: '/withdrawal'
+      fullPath: '/withdrawal/'
+      preLoaderRoute: typeof AuthenticatedFinancialWithdrawalIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/account/$id/': {
       id: '/_authenticated/account/$id/'
@@ -532,9 +592,12 @@ interface AuthenticatedRouteChildren {
   AuthenticatedAccountIndexRoute: typeof AuthenticatedAccountIndexRoute
   AuthenticatedCopyTradingIndexRoute: typeof AuthenticatedCopyTradingIndexRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
-  AuthenticatedFinancialIndexRoute: typeof AuthenticatedFinancialIndexRoute
   AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
   AuthenticatedMarketAnalysisIndexRoute: typeof AuthenticatedMarketAnalysisIndexRoute
+  AuthenticatedFinancialDepositIndexRoute: typeof AuthenticatedFinancialDepositIndexRoute
+  AuthenticatedFinancialInternalTransferIndexRoute: typeof AuthenticatedFinancialInternalTransferIndexRoute
+  AuthenticatedFinancialMyWalletIndexRoute: typeof AuthenticatedFinancialMyWalletIndexRoute
+  AuthenticatedFinancialWithdrawalIndexRoute: typeof AuthenticatedFinancialWithdrawalIndexRoute
   AuthenticatedAccountIdIndexRoute: typeof AuthenticatedAccountIdIndexRoute
 }
 
@@ -543,9 +606,16 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedAccountIndexRoute: AuthenticatedAccountIndexRoute,
   AuthenticatedCopyTradingIndexRoute: AuthenticatedCopyTradingIndexRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
-  AuthenticatedFinancialIndexRoute: AuthenticatedFinancialIndexRoute,
   AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
   AuthenticatedMarketAnalysisIndexRoute: AuthenticatedMarketAnalysisIndexRoute,
+  AuthenticatedFinancialDepositIndexRoute:
+    AuthenticatedFinancialDepositIndexRoute,
+  AuthenticatedFinancialInternalTransferIndexRoute:
+    AuthenticatedFinancialInternalTransferIndexRoute,
+  AuthenticatedFinancialMyWalletIndexRoute:
+    AuthenticatedFinancialMyWalletIndexRoute,
+  AuthenticatedFinancialWithdrawalIndexRoute:
+    AuthenticatedFinancialWithdrawalIndexRoute,
   AuthenticatedAccountIdIndexRoute: AuthenticatedAccountIdIndexRoute,
 }
 

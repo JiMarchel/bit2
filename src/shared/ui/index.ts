@@ -26,6 +26,17 @@ export { Input } from './input';
 export { ImageDropzone } from './image-dropzone';
 export { Label } from './label';
 export {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuIndicator,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuPositioner,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from './navigation-menu';
+export {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,

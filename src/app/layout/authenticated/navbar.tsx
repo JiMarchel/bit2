@@ -1,5 +1,19 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { Copy, Home, LogOut, Menu, User2 } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowRightLeft,
+  ArrowUpFromLine,
+  Copy,
+  Home,
+  LineChart,
+  LogOut,
+  Menu,
+  TrendingUp,
+  User2,
+  Users,
+  Wallet,
+  WalletMinimal,
+} from "lucide-react";
 import {
   Avatar,
   AvatarFallback,
@@ -12,6 +26,12 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
   Sheet,
   SheetContent,
   SheetHeader,
@@ -19,14 +39,30 @@ import {
   SheetTrigger,
 } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
-import { Wallet, TrendingUp, Users, LineChart } from "lucide-react";
 import { ModeToggle } from "../mode-toggle";
 
-const navItems = [
+type NavChild = { label: string; to: string; icon: typeof Home };
+type NavItem = {
+  label: string;
+  to?: string;
+  icon: typeof Home;
+  children?: NavChild[];
+};
+
+const navItems: NavItem[] = [
   { label: "Dashboard", to: "/dashboard", icon: Home },
   { label: "Account", to: "/account", icon: Wallet },
   { label: "Copy Trading", to: "/copy-trading", icon: Copy },
-  { label: "Financial", to: "/financial", icon: TrendingUp },
+  {
+    label: "Financial",
+    icon: TrendingUp,
+    children: [
+      { label: "My Wallet", to: "/my-wallet", icon: WalletMinimal },
+      { label: "Deposit", to: "/deposit", icon: ArrowDownToLine },
+      { label: "Withdrawal", to: "/withdrawal", icon: ArrowUpFromLine },
+      { label: "Internal Transfer", to: "/internal-transfer", icon: ArrowRightLeft },
+    ],
+  },
   { label: "IB", to: "/ib", icon: Users },
   { label: "Market Analysis", to: "/market-analysis", icon: LineChart },
 ];
@@ -48,19 +84,50 @@ export function AuthenticatedNavbar() {
 
         {/* Col 2: Navigation */}
         <div className="hidden items-center justify-self-center gap-1 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.to}
-              to={item.to}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "default" }),
-                "text-white/70 hover:bg-white/10 hover:text-white"
-              )}
-              activeProps={{ className: "bg-white/10 text-white" }}
-            >
-              <item.icon className="h-5 w-5" /> {item.label}
-            </Link>
-          ))}
+          {navItems.map((item) =>
+            item.children ? (
+              <NavigationMenu key={item.label}>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger className="gap-1.5 bg-transparent text-white/70 hover:bg-white/10 hover:text-white focus:bg-white/10 data-popup-open:bg-white/10 data-popup-open:text-white">
+                      <item.icon className="h-5 w-5" /> {item.label}
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-56 gap-1">
+                        {item.children.map((child) => (
+                          <li key={child.to}>
+                            <NavigationMenuLink
+                              render={
+                                <Link
+                                  to={child.to}
+                                  activeProps={{ className: "bg-muted/60" }}
+                                />
+                              }
+                            >
+                              <child.icon className="size-4" />
+                              {child.label}
+                            </NavigationMenuLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            ) : (
+              <Link
+                key={item.to}
+                to={item.to}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "default" }),
+                  "text-white/70 hover:bg-white/10 hover:text-white",
+                )}
+                activeProps={{ className: "bg-white/10 text-white" }}
+              >
+                <item.icon className="h-5 w-5" /> {item.label}
+              </Link>
+            ),
+          )}
         </div>
 
         {/* Col 3: Mobile menu + avatar dropdown */}
@@ -88,16 +155,35 @@ export function AuthenticatedNavbar() {
                   </SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col gap-2">
-                  {navItems.map((item) => (
-                    <Link
-                      key={item.to}
-                      to={item.to}
-                      className="rounded-lg px-4 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
-                      activeProps={{ className: "bg-white/10 text-white font-semibold" }}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
+                  {navItems.map((item) =>
+                    item.children ? (
+                      <div key={item.label} className="flex flex-col">
+                        <p className="px-4 pt-3 pb-1 text-xs font-semibold tracking-wide text-white/40 uppercase">
+                          {item.label}
+                        </p>
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.to}
+                            to={child.to}
+                            className="flex items-center gap-2 rounded-lg px-4 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                            activeProps={{ className: "bg-white/10 text-white font-semibold" }}
+                          >
+                            <child.icon className="size-4" />
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    ) : (
+                      <Link
+                        key={item.to}
+                        to={item.to}
+                        className="rounded-lg px-4 py-3 text-base font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+                        activeProps={{ className: "bg-white/10 text-white font-semibold" }}
+                      >
+                        {item.label}
+                      </Link>
+                    ),
+                  )}
                 </div>
               </SheetContent>
             </Sheet>
