@@ -17,6 +17,7 @@ import { Route as AuthenticatedCopyTradingIndexRouteImport } from './routes/_aut
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
 import { Route as AuthenticatedFinancialIndexRouteImport } from './routes/_authenticated/financial/index'
 import { Route as AuthenticatedIbIndexRouteImport } from './routes/_authenticated/ib/index'
+import { Route as AuthenticatedMarketAnalysisIndexRouteImport } from './routes/_authenticated/market-analysis/index'
 import { Route as AuthenticatedProfileIndexRouteImport } from './routes/_authenticated/profile/index'
 import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthenticated/(home)/index'
 import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
@@ -74,6 +75,12 @@ const AuthenticatedIbIndexRoute = AuthenticatedIbIndexRouteImport.update({
   path: '/ib/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedMarketAnalysisIndexRoute =
+  AuthenticatedMarketAnalysisIndexRouteImport.update({
+    id: '/market-analysis/',
+    path: '/market-analysis/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedProfileIndexRoute =
   AuthenticatedProfileIndexRouteImport.update({
     id: '/',
@@ -167,6 +174,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/financial/': typeof AuthenticatedFinancialIndexRoute
   '/ib/': typeof AuthenticatedIbIndexRoute
+  '/market-analysis/': typeof AuthenticatedMarketAnalysisIndexRoute
   '/profile/': typeof AuthenticatedProfileIndexRoute
   '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/platform/': typeof UnauthenticatedPlatformIndexRoute
@@ -188,6 +196,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AuthenticatedDashboardIndexRoute
   '/financial': typeof AuthenticatedFinancialIndexRoute
   '/ib': typeof AuthenticatedIbIndexRoute
+  '/market-analysis': typeof AuthenticatedMarketAnalysisIndexRoute
   '/profile': typeof AuthenticatedProfileIndexRoute
   '/about-us': typeof UnauthenticatedAboutUsIndexRoute
   '/platform': typeof UnauthenticatedPlatformIndexRoute
@@ -212,6 +221,7 @@ export interface FileRoutesById {
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
   '/_authenticated/financial/': typeof AuthenticatedFinancialIndexRoute
   '/_authenticated/ib/': typeof AuthenticatedIbIndexRoute
+  '/_authenticated/market-analysis/': typeof AuthenticatedMarketAnalysisIndexRoute
   '/_authenticated/profile/': typeof AuthenticatedProfileIndexRoute
   '/_unauthenticated/(home)/': typeof UnauthenticatedhomeIndexRoute
   '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
@@ -237,6 +247,7 @@ export interface FileRouteTypes {
     | '/dashboard/'
     | '/financial/'
     | '/ib/'
+    | '/market-analysis/'
     | '/profile/'
     | '/about-us/'
     | '/platform/'
@@ -258,6 +269,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/financial'
     | '/ib'
+    | '/market-analysis'
     | '/profile'
     | '/about-us'
     | '/platform'
@@ -281,6 +293,7 @@ export interface FileRouteTypes {
     | '/_authenticated/dashboard/'
     | '/_authenticated/financial/'
     | '/_authenticated/ib/'
+    | '/_authenticated/market-analysis/'
     | '/_authenticated/profile/'
     | '/_unauthenticated/(home)/'
     | '/_unauthenticated/about-us/'
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       path: '/ib'
       fullPath: '/ib/'
       preLoaderRoute: typeof AuthenticatedIbIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/market-analysis/': {
+      id: '/_authenticated/market-analysis/'
+      path: '/market-analysis'
+      fullPath: '/market-analysis/'
+      preLoaderRoute: typeof AuthenticatedMarketAnalysisIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/profile/': {
@@ -494,6 +514,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedFinancialIndexRoute: typeof AuthenticatedFinancialIndexRoute
   AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
+  AuthenticatedMarketAnalysisIndexRoute: typeof AuthenticatedMarketAnalysisIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -503,6 +524,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedFinancialIndexRoute: AuthenticatedFinancialIndexRoute,
   AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
+  AuthenticatedMarketAnalysisIndexRoute: AuthenticatedMarketAnalysisIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

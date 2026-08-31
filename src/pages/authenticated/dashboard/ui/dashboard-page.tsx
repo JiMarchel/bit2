@@ -10,8 +10,10 @@ export function DashboardPage() {
   return (
     <div className="mx-auto max-w-7xl space-y-6 p-4 md:p-6">
       <BalanceCard />
-      <SummaryCards />
-      <MarketAnalysis />
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_1.5fr]">
+        <SummaryCards />
+        <MarketAnalysis />
+      </div>
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.7fr_1fr]">
         <TransactionHistory />
         <EconomicCalendar />

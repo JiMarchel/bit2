@@ -19,7 +19,7 @@ import {
   SheetTrigger,
 } from "@/shared/ui";
 import { cn } from "@/shared/lib/cn";
-import { Wallet, TrendingUp, Users } from "lucide-react";
+import { Wallet, TrendingUp, Users, LineChart } from "lucide-react";
 import { ModeToggle } from "../mode-toggle";
 
 const navItems = [
@@ -28,6 +28,7 @@ const navItems = [
   { label: "Copy Trading", to: "/copy-trading", icon: Copy },
   { label: "Financial", to: "/financial", icon: TrendingUp },
   { label: "IB", to: "/ib", icon: Users },
+  { label: "Market Analysis", to: "/market-analysis", icon: LineChart },
 ];
 
 export function AuthenticatedNavbar() {

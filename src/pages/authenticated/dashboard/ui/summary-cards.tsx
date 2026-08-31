@@ -1,5 +1,5 @@
 import { ArrowDownRight, ArrowLeftRight, TrendingDown, TrendingUp } from "lucide-react";
-import { Card, CardContent } from "@/shared/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/shared/ui/card";
 
 const stats = [
   {
@@ -27,10 +27,18 @@ const stats = [
 
 export function SummaryCards() {
   return (
-    <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-      {stats.map((stat) => (
-        <Card key={stat.label} className="shadow-sm">
-          <CardContent className="flex items-start justify-between gap-4">
+    <Card className="flex h-full flex-col shadow-sm">
+      <CardHeader>
+        <CardTitle className="text-lg font-semibold text-primary">
+          Transaction Summary
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="flex flex-1 flex-col gap-4">
+        {stats.map((stat) => (
+          <div
+            key={stat.label}
+            className="flex flex-1 items-start justify-between gap-4 rounded-xl border border-border p-4"
+          >
             <div>
               <p className="text-sm text-muted-foreground">{stat.label}</p>
               <p className="mt-2 text-2xl font-bold text-card-foreground">
@@ -46,9 +54,9 @@ export function SummaryCards() {
             >
               <stat.icon className="size-5" />
             </span>
-          </CardContent>
-        </Card>
-      ))}
-    </div>
+          </div>
+        ))}
+      </CardContent>
+    </Card>
   );
 }
