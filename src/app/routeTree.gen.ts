@@ -23,6 +23,7 @@ import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthen
 import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
 import { Route as UnauthenticatedPlatformIndexRouteImport } from './routes/_unauthenticated/platform/index'
 import { Route as UnauthenticatedTradingIndexRouteImport } from './routes/_unauthenticated/trading/index'
+import { Route as AuthenticatedAccountIdIndexRouteImport } from './routes/_authenticated/account/$id/index'
 import { Route as AuthenticatedProfileBanksIndexRouteImport } from './routes/_authenticated/profile/banks/index'
 import { Route as AuthenticatedProfileCryptoIndexRouteImport } from './routes/_authenticated/profile/crypto/index'
 import { Route as AuthenticatedProfileKycIndexRouteImport } from './routes/_authenticated/profile/kyc/index'
@@ -111,6 +112,12 @@ const UnauthenticatedTradingIndexRoute =
     path: '/trading/',
     getParentRoute: () => UnauthenticatedRoute,
   } as any)
+const AuthenticatedAccountIdIndexRoute =
+  AuthenticatedAccountIdIndexRouteImport.update({
+    id: '/account/$id/',
+    path: '/account/$id/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedProfileBanksIndexRoute =
   AuthenticatedProfileBanksIndexRouteImport.update({
     id: '/banks/',
@@ -179,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/account/$id/': typeof AuthenticatedAccountIdIndexRoute
   '/profile/banks/': typeof AuthenticatedProfileBanksIndexRoute
   '/profile/crypto/': typeof AuthenticatedProfileCryptoIndexRoute
   '/profile/kyc/': typeof AuthenticatedProfileKycIndexRoute
@@ -201,6 +209,7 @@ export interface FileRoutesByTo {
   '/about-us': typeof UnauthenticatedAboutUsIndexRoute
   '/platform': typeof UnauthenticatedPlatformIndexRoute
   '/trading': typeof UnauthenticatedTradingIndexRoute
+  '/account/$id': typeof AuthenticatedAccountIdIndexRoute
   '/profile/banks': typeof AuthenticatedProfileBanksIndexRoute
   '/profile/crypto': typeof AuthenticatedProfileCryptoIndexRoute
   '/profile/kyc': typeof AuthenticatedProfileKycIndexRoute
@@ -227,6 +236,7 @@ export interface FileRoutesById {
   '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/_unauthenticated/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/_unauthenticated/trading/': typeof UnauthenticatedTradingIndexRoute
+  '/_authenticated/account/$id/': typeof AuthenticatedAccountIdIndexRoute
   '/_authenticated/profile/banks/': typeof AuthenticatedProfileBanksIndexRoute
   '/_authenticated/profile/crypto/': typeof AuthenticatedProfileCryptoIndexRoute
   '/_authenticated/profile/kyc/': typeof AuthenticatedProfileKycIndexRoute
@@ -252,6 +262,7 @@ export interface FileRouteTypes {
     | '/about-us/'
     | '/platform/'
     | '/trading/'
+    | '/account/$id/'
     | '/profile/banks/'
     | '/profile/crypto/'
     | '/profile/kyc/'
@@ -274,6 +285,7 @@ export interface FileRouteTypes {
     | '/about-us'
     | '/platform'
     | '/trading'
+    | '/account/$id'
     | '/profile/banks'
     | '/profile/crypto'
     | '/profile/kyc'
@@ -299,6 +311,7 @@ export interface FileRouteTypes {
     | '/_unauthenticated/about-us/'
     | '/_unauthenticated/platform/'
     | '/_unauthenticated/trading/'
+    | '/_authenticated/account/$id/'
     | '/_authenticated/profile/banks/'
     | '/_authenticated/profile/crypto/'
     | '/_authenticated/profile/kyc/'
@@ -415,6 +428,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof UnauthenticatedTradingIndexRouteImport
       parentRoute: typeof UnauthenticatedRoute
     }
+    '/_authenticated/account/$id/': {
+      id: '/_authenticated/account/$id/'
+      path: '/account/$id'
+      fullPath: '/account/$id/'
+      preLoaderRoute: typeof AuthenticatedAccountIdIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/profile/banks/': {
       id: '/_authenticated/profile/banks/'
       path: '/banks'
@@ -515,6 +535,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedFinancialIndexRoute: typeof AuthenticatedFinancialIndexRoute
   AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
   AuthenticatedMarketAnalysisIndexRoute: typeof AuthenticatedMarketAnalysisIndexRoute
+  AuthenticatedAccountIdIndexRoute: typeof AuthenticatedAccountIdIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -525,6 +546,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedFinancialIndexRoute: AuthenticatedFinancialIndexRoute,
   AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
   AuthenticatedMarketAnalysisIndexRoute: AuthenticatedMarketAnalysisIndexRoute,
+  AuthenticatedAccountIdIndexRoute: AuthenticatedAccountIdIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

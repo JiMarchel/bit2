@@ -1,7 +1,9 @@
+import { Link } from "@tanstack/react-router";
 import { USERS_ACCOUNTS } from "@/shared/lib/temp-data";
-import { Avatar, AvatarFallback, AvatarImage, Badge, Button } from "@/shared/ui";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/shared/ui/card";
-import { Plus } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage, Badge, Button, buttonVariants } from "@/shared/ui";
+import { cn } from "@/shared/lib/cn";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/shared/ui/card";
+import { Plus, Settings } from "lucide-react";
 
 export function AccountPage() {
   return (
@@ -28,11 +30,46 @@ export function AccountPage() {
                 </Avatar>
                 <div>
                   <CardTitle className="text-base">{item.login}</CardTitle>
-                  <CardDescription>{item.accountType}</CardDescription>
+                  <CardDescription>{item.rate} Rate</CardDescription>
                 </div>
               </div>
               <Badge>{item.status}</Badge>
             </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="space-y-3 border-b pb-3">
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground text-sm sm:text-base font-semibold">Account Type</span>
+                  <span className="sm:text-base text-sm font-semibold text-end">{item.accountType}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-muted-foreground text-sm sm:text-base font-semibold">Leverage</span>
+                  <span className="sm:text-base text-sm font-semibold">{item.leverage}</span>
+                </div>
+              </div>
+              <div className="space-y-3 grid grid-cols-2">
+                <div className="flex flex-col items-center ">
+                  <span className="text-muted-foreground text-sm font-semibold">Balance</span>
+                  <span className="sm:text-base md:text-lg text-sm font-semibold">{item.balance}</span>
+                </div>
+                <div className="flex flex-col items-center ">
+                  <span className="text-muted-foreground text-sm font-semibold">Equity</span>
+                  <span className="sm:text-base md:text-lg text-sm font-semibold">{item.equity}</span>
+                </div>
+              </div>
+            </CardContent>
+            <CardFooter>
+              <Link
+                to="/account/$id"
+                params={{ id: item.id }}
+                className={cn(
+                  buttonVariants({ variant: "outline", size: "lg" }),
+                  "w-full",
+                )}
+              >
+                <Settings />
+                Account Details
+              </Link>
+            </CardFooter>
           </Card>
         ))}
 

@@ -1,5 +1,6 @@
 export const USERS_ACCOUNTS = [
     {
+      id: "1",
       login: "10009",
       rate: "Floating",
       leverage: "1:500",
@@ -9,6 +10,7 @@ export const USERS_ACCOUNTS = [
       status: "Active",
     },
     {
+      id: "2",
       login: "10014",
       rate: "Fixed",
       leverage: "1:200",
@@ -18,6 +20,7 @@ export const USERS_ACCOUNTS = [
       status: "Active",
     },
     {
+      id: "3",
       login: "10010",
       rate: "Fixed",
       leverage: "1:100",
@@ -27,6 +30,7 @@ export const USERS_ACCOUNTS = [
       status: "Active",
     },
     {
+      id: "4",
       login: "10011",
       rate: "Fixed",
       leverage: "1:200",
@@ -36,6 +40,7 @@ export const USERS_ACCOUNTS = [
       status: "Active",
     },
     {
+      id: "5",
       login: "10012",
       rate: "Fixed",
       leverage: "1:100",
@@ -45,6 +50,7 @@ export const USERS_ACCOUNTS = [
       status: "Active",
     },
     {
+      id: "6",
       login: "10013",
       rate: "Floating",
       leverage: "1:500",
