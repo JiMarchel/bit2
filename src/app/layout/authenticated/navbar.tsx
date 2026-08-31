@@ -3,9 +3,7 @@ import {
   ArrowDownToLine,
   ArrowRightLeft,
   ArrowUpFromLine,
-  Copy,
   Home,
-  LineChart,
   LogOut,
   Menu,
   TrendingUp,
@@ -41,7 +39,12 @@ import {
 import { cn } from "@/shared/lib/cn";
 import { ModeToggle } from "../mode-toggle";
 
-type NavChild = { label: string; to: string; icon: typeof Home };
+type NavChild = {
+  label: string;
+  to: string;
+  icon: typeof Home;
+  description?: string;
+};
 type NavItem = {
   label: string;
   to?: string;
@@ -52,19 +55,28 @@ type NavItem = {
 const navItems: NavItem[] = [
   { label: "Dashboard", to: "/dashboard", icon: Home },
   { label: "Account", to: "/account", icon: Wallet },
-  { label: "Copy Trading", to: "/copy-trading", icon: Copy },
   {
     label: "Financial",
     icon: TrendingUp,
     children: [
-      { label: "My Wallet", to: "/my-wallet", icon: WalletMinimal },
-      { label: "Deposit", to: "/deposit", icon: ArrowDownToLine },
-      { label: "Withdrawal", to: "/withdrawal", icon: ArrowUpFromLine },
-      { label: "Internal Transfer", to: "/internal-transfer", icon: ArrowRightLeft },
+      {
+        label: "My Wallet",
+        to: "/my-wallet",
+        icon: WalletMinimal,
+        description: "Manage your funds",
+      },
+      { label: "Deposit", to: "/deposit", icon: ArrowDownToLine, description: "Deposit to your account" },
+      { label: "Withdrawal", to: "/withdrawal", icon: ArrowUpFromLine, description: "Withdraw from your account" },
+      {
+        label: "Internal Transfer",
+        to: "/internal-transfer",
+        icon: ArrowRightLeft,
+        description: "Transfer funds between your accounts",
+      },
     ],
   },
   { label: "IB", to: "/ib", icon: Users },
-  { label: "Market Analysis", to: "/market-analysis", icon: LineChart },
+  { label: "Copy Trading", to: "/copy-trading", icon: Users },
 ];
 
 export function AuthenticatedNavbar() {
@@ -93,21 +105,16 @@ export function AuthenticatedNavbar() {
                       <item.icon className="h-5 w-5" /> {item.label}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid w-56 gap-1">
+                      <ul className="grid  gap-1 md:grid-cols-2">
                         {item.children.map((child) => (
-                          <li key={child.to}>
-                            <NavigationMenuLink
-                              render={
-                                <Link
-                                  to={child.to}
-                                  activeProps={{ className: "bg-muted/60" }}
-                                />
-                              }
-                            >
-                              <child.icon className="size-4" />
-                              {child.label}
-                            </NavigationMenuLink>
-                          </li>
+                          <ListItem
+                            key={child.to}
+                            href={child.to}
+                            title={child.label}
+                            icon={child.icon}
+                          >
+                            {child.description}
+                          </ListItem>
                         ))}
                       </ul>
                     </NavigationMenuContent>
@@ -216,5 +223,31 @@ export function AuthenticatedNavbar() {
         </div>
       </div>
     </nav>
+  );
+}
+
+function ListItem({
+  title,
+  children,
+  href,
+  icon: Icon,
+  ...props
+}: React.ComponentPropsWithoutRef<"li"> & { href: string; icon: typeof Home }) {
+  return (
+    <li {...props}>
+      <NavigationMenuLink
+        render={
+          <Link to={href}>
+            <div className="flex flex-col gap-1 text-sm">
+              <div className="flex items-center gap-2 leading-none font-medium">
+                <Icon className="size-4" />
+                {title}
+              </div>
+              <div className="line-clamp-2 text-muted-foreground">{children}</div>
+            </div>
+          </Link>
+        }
+      />
+    </li>
   );
 }
