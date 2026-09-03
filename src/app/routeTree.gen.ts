@@ -18,6 +18,7 @@ import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authe
 import { Route as AuthenticatedIbIndexRouteImport } from './routes/_authenticated/ib/index'
 import { Route as AuthenticatedMarketAnalysisIndexRouteImport } from './routes/_authenticated/market-analysis/index'
 import { Route as AuthenticatedProfileIndexRouteImport } from './routes/_authenticated/profile/index'
+import { Route as AuthenticatedSupportIndexRouteImport } from './routes/_authenticated/support/index'
 import { Route as UnauthenticatedhomeIndexRouteImport } from './routes/_unauthenticated/(home)/index'
 import { Route as UnauthenticatedAboutUsIndexRouteImport } from './routes/_unauthenticated/about-us/index'
 import { Route as UnauthenticatedPlatformIndexRouteImport } from './routes/_unauthenticated/platform/index'
@@ -33,6 +34,7 @@ import { Route as AuthenticatedProfileKycIndexRouteImport } from './routes/_auth
 import { Route as AuthenticatedProfileReferralIndexRouteImport } from './routes/_authenticated/profile/referral/index'
 import { Route as AuthenticatedProfileSecurityIndexRouteImport } from './routes/_authenticated/profile/security/index'
 import { Route as AuthenticatedProfileTransactionsIndexRouteImport } from './routes/_authenticated/profile/transactions/index'
+import { Route as AuthenticatedSupportIdIndexRouteImport } from './routes/_authenticated/support/$id/index'
 import { Route as UnauthenticatedauthForgetPasswordIndexRouteImport } from './routes/_unauthenticated/(auth)/forget-password/index'
 import { Route as UnauthenticatedauthSignInIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-in/index'
 import { Route as UnauthenticatedauthSignUpIndexRouteImport } from './routes/_unauthenticated/(auth)/sign-up/index'
@@ -84,6 +86,12 @@ const AuthenticatedProfileIndexRoute =
     id: '/',
     path: '/',
     getParentRoute: () => AuthenticatedProfileRoute,
+  } as any)
+const AuthenticatedSupportIndexRoute =
+  AuthenticatedSupportIndexRouteImport.update({
+    id: '/support/',
+    path: '/support/',
+    getParentRoute: () => AuthenticatedRoute,
   } as any)
 const UnauthenticatedhomeIndexRoute =
   UnauthenticatedhomeIndexRouteImport.update({
@@ -175,6 +183,12 @@ const AuthenticatedProfileTransactionsIndexRoute =
     path: '/transactions/',
     getParentRoute: () => AuthenticatedProfileRoute,
   } as any)
+const AuthenticatedSupportIdIndexRoute =
+  AuthenticatedSupportIdIndexRouteImport.update({
+    id: '/support/$id/',
+    path: '/support/$id/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const UnauthenticatedauthForgetPasswordIndexRoute =
   UnauthenticatedauthForgetPasswordIndexRouteImport.update({
     id: '/(auth)/forget-password/',
@@ -203,6 +217,7 @@ export interface FileRoutesByFullPath {
   '/ib/': typeof AuthenticatedIbIndexRoute
   '/market-analysis/': typeof AuthenticatedMarketAnalysisIndexRoute
   '/profile/': typeof AuthenticatedProfileIndexRoute
+  '/support/': typeof AuthenticatedSupportIndexRoute
   '/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/platform/': typeof UnauthenticatedPlatformIndexRoute
   '/trading/': typeof UnauthenticatedTradingIndexRoute
@@ -217,6 +232,7 @@ export interface FileRoutesByFullPath {
   '/profile/referral/': typeof AuthenticatedProfileReferralIndexRoute
   '/profile/security/': typeof AuthenticatedProfileSecurityIndexRoute
   '/profile/transactions/': typeof AuthenticatedProfileTransactionsIndexRoute
+  '/support/$id/': typeof AuthenticatedSupportIdIndexRoute
   '/forget-password/': typeof UnauthenticatedauthForgetPasswordIndexRoute
   '/sign-in/': typeof UnauthenticatedauthSignInIndexRoute
   '/sign-up/': typeof UnauthenticatedauthSignUpIndexRoute
@@ -229,6 +245,7 @@ export interface FileRoutesByTo {
   '/ib': typeof AuthenticatedIbIndexRoute
   '/market-analysis': typeof AuthenticatedMarketAnalysisIndexRoute
   '/profile': typeof AuthenticatedProfileIndexRoute
+  '/support': typeof AuthenticatedSupportIndexRoute
   '/about-us': typeof UnauthenticatedAboutUsIndexRoute
   '/platform': typeof UnauthenticatedPlatformIndexRoute
   '/trading': typeof UnauthenticatedTradingIndexRoute
@@ -243,6 +260,7 @@ export interface FileRoutesByTo {
   '/profile/referral': typeof AuthenticatedProfileReferralIndexRoute
   '/profile/security': typeof AuthenticatedProfileSecurityIndexRoute
   '/profile/transactions': typeof AuthenticatedProfileTransactionsIndexRoute
+  '/support/$id': typeof AuthenticatedSupportIdIndexRoute
   '/forget-password': typeof UnauthenticatedauthForgetPasswordIndexRoute
   '/sign-in': typeof UnauthenticatedauthSignInIndexRoute
   '/sign-up': typeof UnauthenticatedauthSignUpIndexRoute
@@ -258,6 +276,7 @@ export interface FileRoutesById {
   '/_authenticated/ib/': typeof AuthenticatedIbIndexRoute
   '/_authenticated/market-analysis/': typeof AuthenticatedMarketAnalysisIndexRoute
   '/_authenticated/profile/': typeof AuthenticatedProfileIndexRoute
+  '/_authenticated/support/': typeof AuthenticatedSupportIndexRoute
   '/_unauthenticated/(home)/': typeof UnauthenticatedhomeIndexRoute
   '/_unauthenticated/about-us/': typeof UnauthenticatedAboutUsIndexRoute
   '/_unauthenticated/platform/': typeof UnauthenticatedPlatformIndexRoute
@@ -273,6 +292,7 @@ export interface FileRoutesById {
   '/_authenticated/profile/referral/': typeof AuthenticatedProfileReferralIndexRoute
   '/_authenticated/profile/security/': typeof AuthenticatedProfileSecurityIndexRoute
   '/_authenticated/profile/transactions/': typeof AuthenticatedProfileTransactionsIndexRoute
+  '/_authenticated/support/$id/': typeof AuthenticatedSupportIdIndexRoute
   '/_unauthenticated/(auth)/forget-password/': typeof UnauthenticatedauthForgetPasswordIndexRoute
   '/_unauthenticated/(auth)/sign-in/': typeof UnauthenticatedauthSignInIndexRoute
   '/_unauthenticated/(auth)/sign-up/': typeof UnauthenticatedauthSignUpIndexRoute
@@ -288,6 +308,7 @@ export interface FileRouteTypes {
     | '/ib/'
     | '/market-analysis/'
     | '/profile/'
+    | '/support/'
     | '/about-us/'
     | '/platform/'
     | '/trading/'
@@ -302,6 +323,7 @@ export interface FileRouteTypes {
     | '/profile/referral/'
     | '/profile/security/'
     | '/profile/transactions/'
+    | '/support/$id/'
     | '/forget-password/'
     | '/sign-in/'
     | '/sign-up/'
@@ -314,6 +336,7 @@ export interface FileRouteTypes {
     | '/ib'
     | '/market-analysis'
     | '/profile'
+    | '/support'
     | '/about-us'
     | '/platform'
     | '/trading'
@@ -328,6 +351,7 @@ export interface FileRouteTypes {
     | '/profile/referral'
     | '/profile/security'
     | '/profile/transactions'
+    | '/support/$id'
     | '/forget-password'
     | '/sign-in'
     | '/sign-up'
@@ -342,6 +366,7 @@ export interface FileRouteTypes {
     | '/_authenticated/ib/'
     | '/_authenticated/market-analysis/'
     | '/_authenticated/profile/'
+    | '/_authenticated/support/'
     | '/_unauthenticated/(home)/'
     | '/_unauthenticated/about-us/'
     | '/_unauthenticated/platform/'
@@ -357,6 +382,7 @@ export interface FileRouteTypes {
     | '/_authenticated/profile/referral/'
     | '/_authenticated/profile/security/'
     | '/_authenticated/profile/transactions/'
+    | '/_authenticated/support/$id/'
     | '/_unauthenticated/(auth)/forget-password/'
     | '/_unauthenticated/(auth)/sign-in/'
     | '/_unauthenticated/(auth)/sign-up/'
@@ -431,6 +457,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/profile/'
       preLoaderRoute: typeof AuthenticatedProfileIndexRouteImport
       parentRoute: typeof AuthenticatedProfileRoute
+    }
+    '/_authenticated/support/': {
+      id: '/_authenticated/support/'
+      path: '/support'
+      fullPath: '/support/'
+      preLoaderRoute: typeof AuthenticatedSupportIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_unauthenticated/(home)/': {
       id: '/_unauthenticated/(home)/'
@@ -537,6 +570,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileTransactionsIndexRouteImport
       parentRoute: typeof AuthenticatedProfileRoute
     }
+    '/_authenticated/support/$id/': {
+      id: '/_authenticated/support/$id/'
+      path: '/support/$id'
+      fullPath: '/support/$id/'
+      preLoaderRoute: typeof AuthenticatedSupportIdIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_unauthenticated/(auth)/forget-password/': {
       id: '/_unauthenticated/(auth)/forget-password/'
       path: '/forget-password'
@@ -594,11 +634,13 @@ interface AuthenticatedRouteChildren {
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
   AuthenticatedMarketAnalysisIndexRoute: typeof AuthenticatedMarketAnalysisIndexRoute
+  AuthenticatedSupportIndexRoute: typeof AuthenticatedSupportIndexRoute
   AuthenticatedFinancialDepositIndexRoute: typeof AuthenticatedFinancialDepositIndexRoute
   AuthenticatedFinancialInternalTransferIndexRoute: typeof AuthenticatedFinancialInternalTransferIndexRoute
   AuthenticatedFinancialMyWalletIndexRoute: typeof AuthenticatedFinancialMyWalletIndexRoute
   AuthenticatedFinancialWithdrawalIndexRoute: typeof AuthenticatedFinancialWithdrawalIndexRoute
   AuthenticatedAccountIdIndexRoute: typeof AuthenticatedAccountIdIndexRoute
+  AuthenticatedSupportIdIndexRoute: typeof AuthenticatedSupportIdIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -608,6 +650,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
   AuthenticatedMarketAnalysisIndexRoute: AuthenticatedMarketAnalysisIndexRoute,
+  AuthenticatedSupportIndexRoute: AuthenticatedSupportIndexRoute,
   AuthenticatedFinancialDepositIndexRoute:
     AuthenticatedFinancialDepositIndexRoute,
   AuthenticatedFinancialInternalTransferIndexRoute:
@@ -617,6 +660,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedFinancialWithdrawalIndexRoute:
     AuthenticatedFinancialWithdrawalIndexRoute,
   AuthenticatedAccountIdIndexRoute: AuthenticatedAccountIdIndexRoute,
+  AuthenticatedSupportIdIndexRoute: AuthenticatedSupportIdIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

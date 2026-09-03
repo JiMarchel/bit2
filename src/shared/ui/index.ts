@@ -37,6 +37,38 @@ export {
   navigationMenuTriggerStyle,
 } from './navigation-menu';
 export {
+  MessageGroup,
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageHeader,
+} from './message';
+export { BubbleGroup, Bubble, BubbleContent, BubbleReactions } from './bubble';
+export { Marker, MarkerIcon, MarkerContent, markerVariants } from './marker';
+export {
+  MessageScrollerProvider,
+  MessageScroller,
+  MessageScrollerViewport,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerButton,
+  useMessageScroller,
+  useMessageScrollerScrollable,
+  useMessageScrollerVisibility,
+} from './message-scroller';
+export {
+  Attachment,
+  AttachmentGroup,
+  AttachmentMedia,
+  AttachmentContent,
+  AttachmentTitle,
+  AttachmentDescription,
+  AttachmentActions,
+  AttachmentAction,
+  AttachmentTrigger,
+} from './attachment';
+export {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,

@@ -6,6 +6,7 @@ import {
   Home,
   LogOut,
   Menu,
+  MessageCircle,
   TrendingUp,
   User2,
   Users,
@@ -211,6 +212,10 @@ export function AuthenticatedNavbar() {
                 <DropdownMenuItem render={<Link to="/profile" />}>
                   <User2 />
                   Profile
+                </DropdownMenuItem>
+                <DropdownMenuItem render={<Link to="/support" />}>
+                  <MessageCircle />
+                  Support
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem variant="destructive" onClick={handleLogout}>
