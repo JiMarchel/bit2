@@ -1,76 +1,72 @@
-import { Avatar, AvatarFallback, AvatarImage, AvatarGroup } from '@/shared/ui/avatar'
+const markets = [
+  { pair: "EUR/USD", base: "eu", quote: "us", price: "1.10842", change: "+0.42%", up: true },
+  { pair: "GBP/USD", base: "gb", quote: "us", price: "1.27310", change: "-0.18%", up: false },
+  { pair: "USD/JPY", base: "us", quote: "jp", price: "159.480", change: "+0.31%", up: true },
+  { pair: "AUD/USD", base: "au", quote: "us", price: "0.66120", change: "+0.09%", up: true },
+  { pair: "USD/CAD", base: "us", quote: "ca", price: "1.36940", change: "-0.22%", up: false },
+  { pair: "USD/CHF", base: "us", quote: "ch", price: "0.89310", change: "+0.14%", up: true },
+];
 
-interface Item {
-  symbol: string
-  price: number
-  change: number
-  changePercent: number
-  icons: string[]
-}
+const UP_PATH = "M0,26 L20,22 L40,24 L60,14 L80,18 L100,8 L120,12 L140,4";
+const DOWN_PATH = "M0,6 L20,10 L40,8 L60,18 L80,14 L100,22 L120,18 L140,26";
 
-const ITEMS: Item[] = [
-  { symbol: "SPX500", price: 5782.45, change: 32.15, changePercent: 0.56, icons: ["/symbol/spx500.svg"] },
-  { symbol: "NAS100", price: 20453.80, change: -12.40, changePercent: -0.06, icons: ["/symbol/US.svg"] },
-  { symbol: "GER40", price: 18672.30, change: 78.60, changePercent: 0.42, icons: ["/symbol/dax.svg"] },
-  { symbol: "UK100", price: 8234.15, change: -5.25, changePercent: -0.06, icons: ["/symbol/uk-100.svg"] },
-  { symbol: "JPN225", price: 40123.50, change: 215.30, changePercent: 0.54, icons: ["/symbol/nikkei-225.svg"] },
-  { symbol: "EURUSD", price: 1.0834, change: 0.0024, changePercent: 0.22, icons: ["/symbol/EU.svg", "/symbol/US.svg"] },
-  { symbol: "USDJPY", price: 156.78, change: -0.45, changePercent: -0.29, icons: ["/symbol/US.svg", "/symbol/JP.svg"] },
-  { symbol: "XAUUSD", price: 2398.60, change: 14.80, changePercent: 0.62, icons: ["/symbol/xauusd.svg"] },
-  { symbol: "BTCUSD", price: 67450.00, change: 1230.00, changePercent: 1.86, icons: ["/symbol/btc.svg"] },
-  { symbol: "ETHUSD", price: 3456.20, change: 89.50, changePercent: 2.66, icons: ["/symbol/eth.svg"] },
-]
-
-function Icon({ icons }: { icons: string[] }) {
-  if (icons.length === 1) {
-    return (
-      <Avatar size="sm">
-        <AvatarImage src={icons[0]} />
-        <AvatarFallback>{icons[0].slice(8, 10).toUpperCase()}</AvatarFallback>
-      </Avatar>
-    )
-  }
+export function LiveMarkets() {
   return (
-    <AvatarGroup>
-      {icons.map((src) => (
-        <Avatar key={src} size="sm">
-          <AvatarImage src={src} />
-          <AvatarFallback>{src.slice(8, 10).toUpperCase()}</AvatarFallback>
-        </Avatar>
-      ))}
-    </AvatarGroup>
-  )
-}
+    <section id="markets" className="bg-[#080a10] px-6 py-20 text-white lg:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <span className="text-sm font-semibold text-primary">Live markets</span>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+              Thousands of instruments, one account
+            </h2>
+          </div>
+          <span className="flex items-center gap-2 text-sm text-white/50">
+            <span className="size-2 animate-pulse rounded-full bg-emerald-400" />
+            Prices update in real time
+          </span>
+        </div>
 
-function Card({ symbol, price, change, changePercent, icons }: Item) {
-  const isUp = change >= 0
-  return (
-    <div className="flex shrink-0 items-center gap-3 rounded-lg border border-white/10 bg-secondary px-5 py-3">
-      <Icon icons={icons} />
-      <div>
-        <p className="text-sm font-semibold text-white">{symbol}</p>
-        <p className="text-xs text-white/60">${price.toLocaleString()}</p>
-      </div>
-      <div className="ml-2 text-right">
-        <p className={`text-sm font-medium ${isUp ? 'text-green-400' : 'text-red-400'}`}>
-          {isUp ? '+' : ''}{change.toFixed(2)}
-        </p>
-        <p className={`text-xs ${isUp ? 'text-green-400' : 'text-red-400'}`}>
-          {isUp ? '+' : ''}{changePercent.toFixed(2)}%
-        </p>
-      </div>
-    </div>
-  )
-}
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {markets.map((market) => (
+            <div
+              key={market.pair}
+              className="rounded-2xl border border-white/10 bg-white/3 p-5 transition-colors hover:border-primary/40 hover:bg-white/5"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <img src={`/flags/${market.base}.svg`} alt="" className="size-6 rounded-full object-cover" />
+                  <img
+                    src={`/flags/${market.quote}.svg`}
+                    alt=""
+                    className="-ml-3 size-6 rounded-full object-cover ring-2 ring-[#080a10]"
+                  />
+                  <span className="ml-1 font-bold">{market.pair}</span>
+                </div>
+                <span
+                  className={`rounded-md px-2 py-0.5 text-xs font-semibold ${
+                    market.up ? "bg-emerald-500/15 text-emerald-400" : "bg-rose-500/15 text-rose-400"
+                  }`}
+                >
+                  {market.change}
+                </span>
+              </div>
 
-export function MarketsToday() {
-  return (
-    <div className="overflow-hidden bg-secondary py-3">
-      <div className="flex animate-marquee gap-4" style={{ width: 'max-content' }}>
-        {[...ITEMS, ...ITEMS, ...ITEMS].map((item, i) => (
-          <Card key={i} {...item} />
-        ))}
+              <div className="mt-4 flex items-end justify-between">
+                <span className="text-2xl font-bold tabular-nums">{market.price}</span>
+                <svg viewBox="0 0 140 30" className="h-8 w-28" preserveAspectRatio="none">
+                  <path
+                    d={market.up ? UP_PATH : DOWN_PATH}
+                    fill="none"
+                    strokeWidth="2"
+                    className={market.up ? "stroke-emerald-400" : "stroke-rose-400"}
+                  />
+                </svg>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }

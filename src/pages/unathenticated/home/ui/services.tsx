@@ -1,89 +1,72 @@
-import Silk from "@/shared/ui/silk";
-import { Button } from "@/shared/ui/button";
+import {
+  Banknote,
+  Gauge,
+  Globe,
+  Layers,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
 
-const services = [
+const features = [
   {
-    icon: "/icon/brush.png",
-    title: "Technical Analysis",
-    description:
-      "Find fault with a man who chooses to annoying consequences.",
+    icon: Gauge,
+    title: "Ultra-low spreads",
+    description: "Raw institutional pricing from 0.0 pips with transparent, low commissions.",
   },
   {
-    icon: "/icon/puzzle.png",
-    title: "Trading Platforms",
-    description:
-      "Perfectly simple easy to distinguish. In a free hour, when our power.",
+    icon: Zap,
+    title: "Lightning execution",
+    description: "Orders filled in ~50ms with deep liquidity and zero requotes.",
   },
   {
-    icon: "/icon/electric.png",
-    title: "Educational Resources",
-    description:
-      "Rejects pleasures to secure other great pleasures, or else he endures.",
+    icon: Layers,
+    title: "Leverage up to 1:500",
+    description: "Flexible leverage to match your strategy and risk appetite.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Bank-grade security",
+    description: "Segregated client funds, 2FA, and encryption on every transaction.",
+  },
+  {
+    icon: Banknote,
+    title: "Instant funding",
+    description: "Deposit and withdraw in seconds via cards, banks, and crypto.",
+  },
+  {
+    icon: Globe,
+    title: "24/5 global markets",
+    description: "Trade forex, metals, indices, and crypto CFDs around the clock.",
   },
 ];
 
-function ServiceIcon({ src }: { src: string }) {
+export function Features() {
   return (
-    <Button className="relative size-12 overflow-hidden bg-muted-2 p-0 mb-2 hover:bg-muted-2">
-      <span className="absolute -right-2 -top-2 h-1 w-10 rounded-full bg-primary blur-sm" />
-      <span className="absolute -left-2 -bottom-2 h-1 w-10 rounded-full bg-primary blur-sm" />
-      <img src={src} alt="" className="relative z-10 size-5" />
-    </Button>
-  );
-}
-
-function ServiceCard({
-  icon,
-  title,
-  description,
-}: {
-  icon: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="md:px-8">
-      <ServiceIcon src={icon} />
-      <h3 className="mb-2 text-lg font-semibold text-white">{title}</h3>
-      <p className="text-sm text-white/60">{description}</p>
-      <Button
-        className="mt-7 w-full bg-muted-2 text-white rounded hover:bg-muted-2"
-        size="lg"
-      >
-        Read More
-      </Button>
-    </div>
-  );
-}
-
-export function Services() {
-  return (
-    <section>
-      <div className="relative flex min-h-80 items-center justify-center overflow-hidden px-6">
-        <div className="absolute inset-0">
-          <Silk
-            speed={10}
-            scale={1}
-            color="#001415"
-            noiseIntensity={0}
-            rotation={0}
-          />
-        </div>
-        <div className="relative z-10 text-center">
-          <h2 className="text-3xl font-bold text-white md:text-4xl">
-            Services for Every Traders
+    <section id="features" className="bg-[#05070a] px-6 py-20 text-white lg:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold text-primary">Why BIG</span>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+            Built for traders who demand more
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-base text-white/60 md:text-lg">
-            Discover the most competitive prices in the market, updated
-            regularly for your advantage.
+          <p className="mt-4 text-white/60">
+            Everything you need to trade with confidence — pricing, speed, and
+            protection at an institutional standard.
           </p>
         </div>
-      </div>
 
-      <div className="bg-muted-3 px-4 py-10 md:px-6 md:py-16">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 md:grid-cols-3 md:gap-0 md:divide-x md:divide-white/10">
-          {services.map((s) => (
-            <ServiceCard key={s.title} {...s} />
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {features.map((feature) => (
+            <div
+              key={feature.title}
+              className="group rounded-2xl border border-white/10 bg-white/3 p-6 transition-colors hover:border-primary/40"
+            >
+              <span className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                <feature.icon className="size-5" />
+              </span>
+              <h3 className="mt-5 text-lg font-semibold">{feature.title}</h3>
+              <p className="mt-2 text-sm text-white/60">{feature.description}</p>
+            </div>
           ))}
         </div>
       </div>

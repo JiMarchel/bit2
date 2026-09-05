@@ -1,28 +1,49 @@
+import { Globe, ShieldCheck, Zap } from "lucide-react";
 import { SignInForm } from "./sign-in-form";
 
-export function SignInPage() {
-    return (
-        <div className="flex w-full min-h-screen bg-[#041011]">
-            {/* Left side Image */}
-            <div className="hidden lg:flex flex-1 relative">
-                <img 
-                    src="/auth-image.webp" 
-                    alt="Auth Background" 
-                    className="absolute inset-0 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/40 pointer-events-none"></div>
-                <div className="absolute inset-0 flex flex-col justify-center p-12 lg:p-24 z-10 text-white">
-                    <h2 className="text-5xl xl:text-6xl font-bold mb-4 tracking-tight drop-shadow-lg">Welcome back!</h2>
-                    <p className="text-lg xl:text-xl text-white/90 max-w-md drop-shadow-md leading-relaxed font-medium">
-                        We are glad to see you again! Get access to your Orders, Wishlist and Recommendations.
-                    </p>
-                </div>
-            </div>
+const highlights = [
+  { icon: Zap, text: "50ms average execution" },
+  { icon: ShieldCheck, text: "Segregated & regulated" },
+  { icon: Globe, text: "Trade 24/5 worldwide" },
+];
 
-            {/* Right side Form */}
-            <div className="flex-1 flex items-center justify-center p-8 lg:p-16">
-                <SignInForm />
-            </div>
+export function SignInPage() {
+  return (
+    <div className="flex min-h-screen w-full bg-[#0b0e14] text-white">
+      {/* Brand panel */}
+      <div className="relative hidden flex-1 overflow-hidden bg-[#05070a] lg:flex lg:flex-col lg:justify-center lg:p-14">
+        <div className="pointer-events-none absolute -top-32 -left-24 size-130 rounded-full bg-primary/20 blur-[130px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(255,255,255,0.04)_1px,transparent_0)] bg-size-[32px_32px]" />
+
+        <div className="relative">
+          <h2 className="max-w-md text-4xl font-black leading-tight tracking-tight xl:text-5xl">
+            Welcome back to <span className="text-primary">BIG</span>
+          </h2>
+          <p className="mt-4 max-w-md text-white/60">
+            Sign in to manage your portfolio, fund your account, and trade the
+            world&apos;s markets.
+          </p>
+          <ul className="mt-8 flex flex-col gap-3">
+            {highlights.map((item) => (
+              <li key={item.text} className="flex items-center gap-3 text-sm text-white/75">
+                <span className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <item.icon className="size-4" />
+                </span>
+                {item.text}
+              </li>
+            ))}
+          </ul>
         </div>
-    );
+
+        <p className="absolute bottom-14 left-14 text-xs text-white/40">
+          © {new Date().getFullYear()} BIG Markets. Trading involves risk.
+        </p>
+      </div>
+
+      {/* Form */}
+      <div className="flex flex-1 items-center justify-center p-6 sm:p-10">
+        <SignInForm />
+      </div>
+    </div>
+  );
 }

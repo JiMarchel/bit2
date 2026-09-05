@@ -1,114 +1,89 @@
-import { Check, Sparkles } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { Check } from "lucide-react";
+import { buttonVariants } from "@/shared/ui";
+import { cn } from "@/shared/lib/cn";
 
-const plans = [
+const tiers = [
   {
-    name: "Standard Account",
-    deposit: "$10",
-    popular: true,
-    features: [
-      ["Spread From 1.5 pip"],
-      ["Maximum Leverage", "1:2000"],
-      ["Minimum trade size", "0.01 Lot"],
-      ["Commission", "No"],
-      ["Swap", "No"],
-    ],
+    name: "Standard",
+    tagline: "For getting started",
+    minDeposit: "$10",
+    highlight: false,
+    specs: ["Spreads from 1.0 pip", "Zero commission", "Leverage up to 1:200", "All instruments"],
   },
   {
-    name: "ECN Account",
-    deposit: "$500",
-    popular: false,
-    features: [
-      ["Spread From 1.7 pip"],
-      ["Maximum Leverage", "1:2000"],
-      ["Minimum trade size", "0.01 Lot"],
-      ["Commission", "Yes"],
-      ["Swap", "No"],
-    ],
+    name: "Pro",
+    tagline: "For active traders",
+    minDeposit: "$500",
+    highlight: true,
+    specs: ["Spreads from 0.2 pips", "$3.5 / lot commission", "Leverage up to 1:500", "Priority execution", "Dedicated manager"],
   },
   {
-    name: "PRO Account",
-    deposit: "$1000",
-    popular: false,
-    features: [
-      ["Spread From 0.5 pip"],
-      ["Maximum Leverage", "1:2000"],
-      ["Minimum trade size", "0.01 Lot"],
-      ["Commission", "Yes"],
-      ["Swap", "Yes"],
-    ],
+    name: "VIP",
+    tagline: "For high volume",
+    minDeposit: "$25,000",
+    highlight: false,
+    specs: ["Spreads from 0.0 pips", "Rebate program", "Leverage up to 1:500", "VPS hosting", "24/7 concierge"],
   },
 ];
 
 export function AccountTypes() {
   return (
-    <div className="bg-[#d9d9d9] py-20 pb-32 font-sans">
-      <div className="mx-auto max-w-7xl px-6 text-center">
-        <h2 className="text-4xl font-bold text-black md:text-5xl tracking-tight">
-          Explore Our Account Options
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-lg text-black/60 md:text-xl">
-          Discover the most competitive prices in the market
-          <br className="hidden md:block" /> updated regularly for your
-          advantage.
-        </p>
-      </div>
-
-      <div className="mx-auto mt-16 max-w-5xl px-6">
-        <div className="mb-6 flex justify-start pl-2 md:pl-0">
-          <div className="inline-flex rounded-full bg-[#05151c] px-7 py-2.5 text-xl font-medium text-white shadow-lg">
-            Account Types
-          </div>
+    <section id="accounts" className="bg-[#080a10] px-6 py-20 text-white lg:py-24">
+      <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-semibold text-primary">Account types</span>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
+            Choose the account that fits you
+          </h2>
         </div>
 
-        <div className="grid gap-6 md:grid-cols-3 items-end">
-          {plans.map((plan) => (
+        <div className="mt-14 grid gap-6 lg:grid-cols-3">
+          {tiers.map((tier) => (
             <div
-              key={plan.name}
-              className={`relative flex h-full flex-col rounded-xl bg-white text-left ${
-                plan.popular
-                  ? "border-[3px] border-primary shadow-xl"
-                  : "shadow-md mt-10 md:mt-0"
-              }`}
-            >
-              {plan.popular && (
-                <div className="flex w-full items-center justify-center gap-1.5 rounded-t-lg bg-primary py-2 text-xs font-bold text-black uppercase tracking-wider">
-                  Most Popular <Sparkles className="h-3.5 w-3.5 fill-black" />
-                </div>
+              key={tier.name}
+              className={cn(
+                "relative flex flex-col rounded-2xl border p-7",
+                tier.highlight
+                  ? "border-primary/50 bg-primary/6 shadow-[0_0_40px_-12px_var(--color-primary)]"
+                  : "border-white/10 bg-white/3",
               )}
-
-              <div className="flex flex-1 flex-col p-8 pt-10">
-                <h3 className="text-xl font-bold text-black">{plan.name}</h3>
-                <p className="mt-1 text-sm text-black/60">
-                  Min Opening Deposit
-                </p>
-                <div className="mt-4 text-4xl font-extrabold text-black tracking-tight">
-                  {plan.deposit}
-                </div>
-
-                <button className="mt-8 w-full rounded-md bg-primary py-3 text-sm font-bold text-black transition-colors hover:bg-primary/80 active:scale-[0.98]">
-                  Get started
-                </button>
-
-                <ul className="mt-10 flex flex-1 flex-col gap-5">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-4">
-                      <Check
-                        className="mt-0.5 h-5 w-5 shrink-0 text-black"
-                        strokeWidth={2}
-                      />
-                      <div className="flex flex-col text-sm font-medium text-black/80 leading-tight">
-                        {feature.map((line, i) => (
-                          <span key={i}>{line}</span>
-                        ))}
-                      </div>
-                    </li>
-                  ))}
-                </ul>
+            >
+              {tier.highlight && (
+                <span className="absolute -top-3 left-7 rounded-full bg-primary px-3 py-1 text-xs font-bold text-primary-foreground">
+                  Most popular
+                </span>
+              )}
+              <h3 className="text-xl font-bold">{tier.name}</h3>
+              <p className="mt-1 text-sm text-white/50">{tier.tagline}</p>
+              <div className="mt-5 flex items-end gap-1.5">
+                <span className="text-3xl font-black">{tier.minDeposit}</span>
+                <span className="pb-1 text-sm text-white/50">min. deposit</span>
               </div>
+
+              <ul className="mt-6 flex flex-1 flex-col gap-3">
+                {tier.specs.map((spec) => (
+                  <li key={spec} className="flex items-center gap-2.5 text-sm text-white/70">
+                    <Check className="size-4 shrink-0 text-primary" />
+                    {spec}
+                  </li>
+                ))}
+              </ul>
+
+              <Link
+                to="/sign-up"
+                className={cn(
+                  buttonVariants({ variant: tier.highlight ? "default" : "outline", size: "lg" }),
+                  "mt-8 w-full font-semibold",
+                  !tier.highlight && "border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white",
+                )}
+              >
+                Open {tier.name} account
+              </Link>
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 }

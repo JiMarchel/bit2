@@ -1,97 +1,95 @@
-import { Button } from "@/shared/ui/button";
 import { Link } from "@tanstack/react-router";
+import { CandlestickChart } from "lucide-react";
+
+const columns = [
+  {
+    title: "Trading",
+    links: ["Forex", "Commodities", "Indices", "Crypto CFDs", "Spreads & Fees"],
+  },
+  {
+    title: "Company",
+    links: ["About BIG", "Careers", "Newsroom", "Partners", "Contact"],
+  },
+  {
+    title: "Legal",
+    links: ["Terms of Service", "Privacy Policy", "Risk Disclosure", "AML Policy"],
+  },
+];
+
+const socials = [
+  { src: "/icon/facebook.png", label: "Facebook" },
+  { src: "/icon/twitter.png", label: "Twitter" },
+  { src: "/icon/instram.png", label: "Instagram" },
+  { src: "/icon/youtube.png", label: "YouTube" },
+];
 
 export function Footer() {
-    return (
-        <footer className="bg-[#18181b] text-white pt-16 pb-8 px-6 md:px-10 border-t border-white/10">
-            <div className="mx-auto max-w-7xl">
-                {/* Top Section */}
-                <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-10 md:gap-0">
-                    <div className="flex flex-col items-start">
-                        <img
-                            src="/logo.png"
-                            alt="Agl Market"
-                            className="w-20 h-auto mb-8 object-contain object-top-left"
-                        />
-
-                        <p className="max-w-xs text-white/90 text-sm font-medium mb-6">
-                            Trading With Agl Market: spreads<br />
-                            starting at 0.5, minimum deposit of $10.
-                        </p>
-
-                        <div className="flex flex-col gap-1.5 font-semibold">
-                            <a href="mailto:support@aglarea.com" className="hover:text-primary transition-colors text-sm">support@aglarea.com</a>
-                            <a href="tel:+180098765432" className="hover:text-primary transition-colors text-sm">+1 800.98.76.5432</a>
-                        </div>
-                    </div>
-
-                    <div className="flex flex-col items-start md:items-end gap-10 w-full md:w-auto">
-                        {/* Social & App Icons */}
-                        <div className="flex flex-wrap gap-4 md:gap-16">
-                            <div className="flex flex-wrap gap-2.5">
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/facebook.png" alt="Facebook" className="w-10 h-10 object-contain" />
-                                </Button>
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/twitter.png" alt="Twitter" className="w-10 h-10 object-contain" />
-                                </Button>
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/instram.png" alt="Instagram" className="w-10 h-10 object-contain" />
-                                </Button>
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/youtube.png" alt="YouTube" className="w-10 h-10 object-contain" />
-                                </Button>
-                            </div>
-                            <div className="flex flex-wrap gap-2.5">
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/mac-os-logo.png" alt="Apple" className="w-10 h-10 object-contain" />
-                                </Button>
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/playstore.png" alt="Play Store" className="w-10 h-10 object-contain" />
-                                </Button>
-                                <Button className="hover:bg-secondary bg-secondary h-fit p-2">
-                                    <img src="/icon/android.png" alt="Android" className="w-10 h-10 object-contain" />
-                                </Button>
-                            </div>
-                        </div>
-
-                        {/* Navigation Links */}
-                        <div className="grid grid-cols-2 gap-8 md:gap-32 text-left w-full md:w-auto">
-                            <div className="flex flex-col gap-4">
-                                <h4 className="text-xl font-bold">Trading</h4>
-                                <ul className="flex flex-col gap-2.5 text-[13px] text-white/60">
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Trading Account Type</a></li>
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Deposit & Withdrawal</a></li>
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Instrument Trading</a></li>
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Platform Trading</a></li>
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Education Trading</a></li>
-                                </ul>
-                            </div>
-                            <div className="flex flex-col gap-4">
-                                <h4 className="text-xl font-bold">Company</h4>
-                                <ul className="flex flex-col gap-2.5 text-[13px] text-white/60">
-                                    <li><Link to="/about-us" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> About Us</Link></li>
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Regulation</a></li>
-                                    <li><a href="#" className="hover:text-primary flex items-center gap-1.5"><span className="text-white/40 text-[8px]">▶</span> Contact Us</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Risk Disclosure Section */}
-                <div className="flex flex-col gap-3 mb-10 pt-8 border-t border-white/5">
-                    <h4 className="text-[17px] font-bold">Risk Disclosure</h4>
-                    <p className="text-white/50 text-[13px] leading-relaxed text-justify md:text-left pr-0 md:pr-20">
-                        All financial products traded on margin carry a high level of risk to your capital. These products are not suitable for all investors, and you may lose more than your initial deposit. Ensure you fully understand the risks and seek independent advice if necessary. For further information, please see our full Risk Statement, Terms of Business, and Privacy Policy. Please see our official documents for more information.
-                    </p>
-                </div>
-
-                {/* Bottom Footer */}
-                <div className="pt-6 border-t border-white/20 flex flex-col md:flex-row justify-between items-center text-white/80 text-[13px]">
-                    <p>Privacy Policy . Terms of Service. Risk Disclosure</p>
-                </div>
+  return (
+    <footer className="border-t border-white/10 bg-[#05070a] px-6 pt-16 pb-8 text-white">
+      <div className="mx-auto max-w-7xl">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+          <div>
+            <div className="flex items-center gap-2">
+              <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <CandlestickChart className="size-5" />
+              </span>
+              <span className="text-xl font-black tracking-tight">
+                BIG<span className="text-primary">.</span>
+              </span>
             </div>
-        </footer>
-    );
+            <p className="mt-4 max-w-xs text-sm text-white/60">
+              Trade forex, metals, and indices with institutional pricing,
+              ultra-low spreads, and lightning-fast execution.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2.5">
+              {socials.map((social) => (
+                <a
+                  key={social.label}
+                  href="#"
+                  aria-label={social.label}
+                  className="flex size-10 items-center justify-center rounded-lg bg-white/5 p-2 transition-colors hover:bg-white/10"
+                >
+                  <img src={social.src} alt={social.label} className="size-full object-contain" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {columns.map((column) => (
+            <div key={column.title}>
+              <h4 className="text-sm font-bold tracking-wide text-white/90 uppercase">
+                {column.title}
+              </h4>
+              <ul className="mt-4 flex flex-col gap-2.5">
+                {column.links.map((link) => (
+                  <li key={link}>
+                    <a href="#" className="text-sm text-white/60 transition-colors hover:text-primary">
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 border-t border-white/5 pt-6">
+          <p className="text-xs leading-relaxed text-white/40">
+            Risk warning: Trading leveraged products such as CFDs carries a high
+            level of risk to your capital. You may lose more than your initial
+            deposit. These products are not suitable for all investors; ensure
+            you fully understand the risks and seek independent advice if
+            necessary.
+          </p>
+          <div className="mt-6 flex flex-col items-start justify-between gap-3 text-xs text-white/50 sm:flex-row sm:items-center">
+            <p>© {new Date().getFullYear()} BIG Markets. All rights reserved.</p>
+            <div className="flex gap-4">
+              <Link to="/sign-in" className="hover:text-white">Log In</Link>
+              <Link to="/sign-up" className="hover:text-white">Get Started</Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

@@ -1,80 +1,64 @@
-import Silk from "@/shared/ui/silk";
+import { Link } from "@tanstack/react-router";
+import { Check, MonitorSmartphone } from "lucide-react";
+import { buttonVariants } from "@/shared/ui";
+import { cn } from "@/shared/lib/cn";
 
-const cards = [
-    {
-        title: "Faster & Safe Trade Execution",
-        description: "In the fast-paced world of trading, every second counts. At Agile Market, we understand the importance of speed and efficiency in executing trades. That's why we've invested in cutting-edge technology and infrastructure to ensure our clients experience the fastest trade execution possible.",
-        icon: "/icon/Faster-&-Safe-Trade-Execution.png"
-    },
-    {
-        title: "User Friendly For New Users",
-        description: "At Agile Market, we believe that trading should be accessible to everyone, regardless of their experience level. That's why our platform is designed to be user-friendly and intuitive, making it easy for new users to get started and succeed in the trading world.",
-        icon: "/icon/User-Friendly-For-New-Users.png"
-    },
-    {
-        title: "Effecient And Fast Trading",
-        description: "Their attention to detail and commitment to delivering a user-friendly platform was evident throughout the project. The system has streamlined our operations and enhanced our clients' event experiences.",
-        icon: "/icon/Effecient-And-Fast-Trading.png"
-    },
-    {
-        title: "Instan And Timely Deposits",
-        description: "They delivered an exceptional custom software solution. The system has significantly increased our productivity and reduced manual errors. SquareUp's expertise and professionalism have made them a trusted technology partner.",
-        icon: "/icon/Instan-And-Timely-Deposits.png"
-    }
+const points = [
+  "Native apps for iOS and Android",
+  "MetaTrader 5 and BIG WebTrader",
+  "Advanced charts with 80+ indicators",
+  "One-tap trading and price alerts",
 ];
 
-export function WhyUs() {
-    return (
-        <section>
-            <div className="relative flex min-h-80 items-center justify-center overflow-hidden px-6">
-                <div className="absolute inset-0">
-                    <Silk
-                        speed={10}
-                        scale={1}
-                        color="#001415"
-                        noiseIntensity={0}
-                        rotation={0}
-                    />
-                </div>
-                <div className="relative z-10 text-center ">
-                    <p className="mx-auto mb-5 max-w-xl font-bold text-white md:text-lg">
-                        WHY WE ARE BEST
-                    </p>
-                    <h2 className="text-3xl font-bold text-white md:text-4xl">
-                        Global Markets At Your Fingertips
-                    </h2>
-                </div>
-            </div>
+export function Platforms() {
+  return (
+    <section id="platforms" className="bg-[#05070a] px-6 py-20 text-white lg:py-24">
+      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
+        <div className="relative order-2 lg:order-1">
+          <div className="pointer-events-none absolute inset-0 -z-10 mx-auto size-3/4 self-center rounded-full bg-primary/15 blur-[120px]" />
+          <img
+            src="/Double-Phone.webp"
+            alt="BIG trading app"
+            className="mx-auto w-full max-w-md object-contain drop-shadow-2xl"
+          />
+        </div>
 
-            <div className="bg-[#111111] border-y border-white/5">
-                <div className="mx-auto grid max-w-7xl grid-cols-1 md:grid-cols-2">
-                    {cards.map((card, index) => (
-                        <div
-                            key={index}
-                            className={`p-10 md:p-16 flex flex-col gap-6 ${
-                                index === 0 ? "border-b border-white/10 md:border-r" :
-                                index === 1 ? "border-b border-white/10" :
-                                index === 2 ? "border-b border-white/10 md:border-b-0 md:border-r" :
-                                ""
-                            }`}
-                        >
-                            <div className="w-16 h-16 shrink-0">
-                                <img
-                                    src={card.icon}
-                                    alt={card.title}
-                                    className="w-full h-full object-contain"
-                                />
-                            </div>
-                            <h3 className="text-xl md:text-2xl font-semibold text-primary">
-                                {card.title}
-                            </h3>
-                            <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                                {card.description}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+        <div className="order-1 lg:order-2">
+          <span className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+            <MonitorSmartphone className="size-4" />
+            Platforms
+          </span>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            Trade anywhere, on any device
+          </h2>
+          <p className="mt-4 max-w-lg text-white/60">
+            Seamlessly switch between desktop, web, and mobile. Your positions,
+            watchlists, and alerts stay in sync everywhere.
+          </p>
+
+          <ul className="mt-8 grid gap-4 sm:grid-cols-2">
+            {points.map((point) => (
+              <li key={point} className="flex items-start gap-2.5 text-sm text-white/75">
+                <Check className="mt-0.5 size-4 shrink-0 text-primary" />
+                {point}
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <Link
+              to="/sign-up"
+              className={cn(buttonVariants({ size: "lg" }), "font-semibold")}
+            >
+              Create free account
+            </Link>
+            <span className="flex items-center gap-3 rounded-lg border border-white/10 px-4 py-2">
+              <img src="/meta5.png" alt="MetaTrader 5" className="h-7 w-auto object-contain" />
+              <span className="text-sm text-white/60">MetaTrader 5 ready</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

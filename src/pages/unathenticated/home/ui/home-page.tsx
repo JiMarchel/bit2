@@ -1,19 +1,19 @@
-import { AccountTypes } from './account-types';
-import { Hero } from './hero';
-import { MarketsToday } from './markets-today';
-import { RegisterNow } from './register-now';
-import { Services } from './services';
-import { WhyUs } from './why-us';
+import { Hero } from "./hero";
+import { LiveMarkets } from "./markets-today";
+import { Features } from "./services";
+import { AccountTypes } from "./account-types";
+import { Platforms } from "./why-us";
+import { CallToAction } from "./register-now";
 
 export function HomePage() {
   return (
     <>
       <Hero />
-      <MarketsToday />
-      <Services />
+      <LiveMarkets />
+      <Features />
       <AccountTypes />
-      <WhyUs />
-      <RegisterNow />
+      <Platforms />
+      <CallToAction />
     </>
   );
 }

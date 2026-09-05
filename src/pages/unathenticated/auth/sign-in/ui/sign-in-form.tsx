@@ -1,50 +1,68 @@
+import { Link } from "@tanstack/react-router";
 import { Label } from "@/shared/ui/label";
 import { Input } from "@/shared/ui/input";
 import { Button } from "@/shared/ui/button";
-import { Link } from "@tanstack/react-router";
-import { HeadphonesIcon } from "lucide-react";
+import { CandlestickChart } from "lucide-react";
+
+const inputClass =
+  "h-12 rounded-lg border-white/15 bg-white/5 text-white placeholder:text-white/35 focus-visible:border-primary focus-visible:ring-primary/30";
 
 export function SignInForm() {
-    return (
-        <div className="flex flex-col w-full max-w-112.5 relative">
-            <h1 className="text-white text-4xl md:text-5xl font-bold mb-3 tracking-tight">Log In</h1>
-            <p className="text-gray-400 mb-10 text-sm md:text-base">All fields are required</p>
+  return (
+    <div className="w-full max-w-md">
+      <Link to="/" className="mb-8 flex items-center gap-2 lg:hidden">
+        <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+          <CandlestickChart className="size-5" />
+        </span>
+        <span className="text-xl font-black tracking-tight text-white">
+          BIG<span className="text-primary">.</span>
+        </span>
+      </Link>
 
-            <form className="flex flex-col gap-6 w-full">
-                <div className="flex flex-col gap-2.5">
-                    <Label htmlFor="email" className="text-white/90 text-sm md:text-base font-semibold">Email Address</Label>
-                    <Input id="email" type="email" placeholder="JohnDoe@gmail.com" className="bg-[#0b282c] border-[#1f5f64] text-white placeholder:text-white/60 h-11 md:h-12 rounded" />
-                </div>
+      <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Log in</h1>
+      <p className="mt-2 text-sm text-white/50">
+        Enter your credentials to access your account.
+      </p>
 
-                <div className="flex flex-col gap-2.5">
-                    <Label htmlFor="password" className="text-white/90 text-sm md:text-base font-semibold">Password</Label>
-                    <Input id="password" type="password" placeholder="***********" className="bg-[#0b282c] border-[#1f5f64] text-white h-11 md:h-12 rounded placeholder:text-white/40 placeholder:tracking-widest" />
-                </div>
-
-                <div className="flex items-center justify-between mt-1">
-                    <div className="flex items-center gap-2">
-                        <input type="checkbox" id="remember" className="w-4 h-4 bg-[#0b282c] border-[#1f5f64] rounded text-primary focus:ring-primary focus:ring-offset-0 focus:ring-1" />
-                        <Label htmlFor="remember" className="text-white/80 text-sm">Remember Me</Label>
-                    </div>
-                    <Link to="/forget-password" className="text-primary hover:underline text-sm font-medium">Forgot Password ?</Link>
-                </div>
-
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-black font-semibold h-12 md:h-14 text-lg mt-4 rounded-md shadow-[0_0_15px_rgba(163,255,0,0.2)]">
-                    Login
-                </Button>
-            </form>
-
-            <p className="text-center text-white/70 text-xs md:text-sm mt-8">
-                Don't have an account? <Link to="/sign-up" className="text-primary hover:underline font-medium">Sign Up</Link>
-            </p>
-
-            {/* We Are Here! floating badge (for desktop/tablet representation) */}
-            <div className="absolute -bottom-32 -right-10 hidden md:flex items-center gap-3">
-                <span className="text-white/80 text-sm font-medium">We Are Here!</span>
-                <div className="bg-primary text-black p-2.5 rounded-full shadow-lg">
-                    <HeadphonesIcon className="w-6 h-6" />
-                </div>
-            </div>
+      <form className="mt-8 flex flex-col gap-5">
+        <div className="flex flex-col gap-2">
+          <Label htmlFor="email" className="text-sm font-medium text-white/80">
+            Email address
+          </Label>
+          <Input id="email" type="email" placeholder="you@example.com" className={inputClass} />
         </div>
-    );
+
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <Label htmlFor="password" className="text-sm font-medium text-white/80">
+              Password
+            </Label>
+            <Link to="/forget-password" className="text-sm font-medium text-primary hover:underline">
+              Forgot password?
+            </Link>
+          </div>
+          <Input id="password" type="password" placeholder="••••••••" className={inputClass} />
+        </div>
+
+        <label className="flex items-center gap-2 text-sm text-white/70">
+          <input
+            type="checkbox"
+            className="size-4 rounded border-white/20 bg-white/5 accent-primary"
+          />
+          Keep me signed in
+        </label>
+
+        <Button type="submit" className="mt-2 h-12 w-full text-base font-semibold">
+          Log in
+        </Button>
+      </form>
+
+      <p className="mt-8 text-center text-sm text-white/60">
+        Don&apos;t have an account?{" "}
+        <Link to="/sign-up" className="font-semibold text-primary hover:underline">
+          Sign up
+        </Link>
+      </p>
+    </div>
+  );
 }
