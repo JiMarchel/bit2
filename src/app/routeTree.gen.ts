@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as UnauthenticatedRouteImport } from './routes/_unauthenticated'
 import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticated/profile'
+import { Route as AuthenticatedSupportRouteImport } from './routes/_authenticated/support'
 import { Route as AuthenticatedAccountIndexRouteImport } from './routes/_authenticated/account/index'
 import { Route as AuthenticatedCopyTradingIndexRouteImport } from './routes/_authenticated/copy-trading/index'
 import { Route as AuthenticatedDashboardIndexRouteImport } from './routes/_authenticated/dashboard/index'
@@ -52,6 +53,11 @@ const AuthenticatedProfileRoute = AuthenticatedProfileRouteImport.update({
   path: '/profile',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedSupportRoute = AuthenticatedSupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
 const AuthenticatedAccountIndexRoute =
   AuthenticatedAccountIndexRouteImport.update({
     id: '/account/',
@@ -89,9 +95,9 @@ const AuthenticatedProfileIndexRoute =
   } as any)
 const AuthenticatedSupportIndexRoute =
   AuthenticatedSupportIndexRouteImport.update({
-    id: '/support/',
-    path: '/support/',
-    getParentRoute: () => AuthenticatedRoute,
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedSupportRoute,
   } as any)
 const UnauthenticatedhomeIndexRoute =
   UnauthenticatedhomeIndexRouteImport.update({
@@ -185,9 +191,9 @@ const AuthenticatedProfileTransactionsIndexRoute =
   } as any)
 const AuthenticatedSupportIdIndexRoute =
   AuthenticatedSupportIdIndexRouteImport.update({
-    id: '/support/$id/',
-    path: '/support/$id/',
-    getParentRoute: () => AuthenticatedRoute,
+    id: '/$id/',
+    path: '/$id/',
+    getParentRoute: () => AuthenticatedSupportRoute,
   } as any)
 const UnauthenticatedauthForgetPasswordIndexRoute =
   UnauthenticatedauthForgetPasswordIndexRouteImport.update({
@@ -211,6 +217,7 @@ const UnauthenticatedauthSignUpIndexRoute =
 export interface FileRoutesByFullPath {
   '/': typeof UnauthenticatedhomeIndexRoute
   '/profile': typeof AuthenticatedProfileRouteWithChildren
+  '/support': typeof AuthenticatedSupportRouteWithChildren
   '/account/': typeof AuthenticatedAccountIndexRoute
   '/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
   '/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -270,6 +277,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/_unauthenticated': typeof UnauthenticatedRouteWithChildren
   '/_authenticated/profile': typeof AuthenticatedProfileRouteWithChildren
+  '/_authenticated/support': typeof AuthenticatedSupportRouteWithChildren
   '/_authenticated/account/': typeof AuthenticatedAccountIndexRoute
   '/_authenticated/copy-trading/': typeof AuthenticatedCopyTradingIndexRoute
   '/_authenticated/dashboard/': typeof AuthenticatedDashboardIndexRoute
@@ -302,6 +310,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/profile'
+    | '/support'
     | '/account/'
     | '/copy-trading/'
     | '/dashboard/'
@@ -360,6 +369,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/_unauthenticated'
     | '/_authenticated/profile'
+    | '/_authenticated/support'
     | '/_authenticated/account/'
     | '/_authenticated/copy-trading/'
     | '/_authenticated/dashboard/'
@@ -416,6 +426,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/support': {
+      id: '/_authenticated/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof AuthenticatedSupportRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/account/': {
       id: '/_authenticated/account/'
       path: '/account'
@@ -460,10 +477,10 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/support/': {
       id: '/_authenticated/support/'
-      path: '/support'
+      path: '/'
       fullPath: '/support/'
       preLoaderRoute: typeof AuthenticatedSupportIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      parentRoute: typeof AuthenticatedSupportRoute
     }
     '/_unauthenticated/(home)/': {
       id: '/_unauthenticated/(home)/'
@@ -572,10 +589,10 @@ declare module '@tanstack/react-router' {
     }
     '/_authenticated/support/$id/': {
       id: '/_authenticated/support/$id/'
-      path: '/support/$id'
+      path: '/$id'
       fullPath: '/support/$id/'
       preLoaderRoute: typeof AuthenticatedSupportIdIndexRouteImport
-      parentRoute: typeof AuthenticatedRoute
+      parentRoute: typeof AuthenticatedSupportRoute
     }
     '/_unauthenticated/(auth)/forget-password/': {
       id: '/_unauthenticated/(auth)/forget-password/'
@@ -627,30 +644,42 @@ const AuthenticatedProfileRouteChildren: AuthenticatedProfileRouteChildren = {
 const AuthenticatedProfileRouteWithChildren =
   AuthenticatedProfileRoute._addFileChildren(AuthenticatedProfileRouteChildren)
 
+interface AuthenticatedSupportRouteChildren {
+  AuthenticatedSupportIndexRoute: typeof AuthenticatedSupportIndexRoute
+  AuthenticatedSupportIdIndexRoute: typeof AuthenticatedSupportIdIndexRoute
+}
+
+const AuthenticatedSupportRouteChildren: AuthenticatedSupportRouteChildren = {
+  AuthenticatedSupportIndexRoute: AuthenticatedSupportIndexRoute,
+  AuthenticatedSupportIdIndexRoute: AuthenticatedSupportIdIndexRoute,
+}
+
+const AuthenticatedSupportRouteWithChildren =
+  AuthenticatedSupportRoute._addFileChildren(AuthenticatedSupportRouteChildren)
+
 interface AuthenticatedRouteChildren {
   AuthenticatedProfileRoute: typeof AuthenticatedProfileRouteWithChildren
+  AuthenticatedSupportRoute: typeof AuthenticatedSupportRouteWithChildren
   AuthenticatedAccountIndexRoute: typeof AuthenticatedAccountIndexRoute
   AuthenticatedCopyTradingIndexRoute: typeof AuthenticatedCopyTradingIndexRoute
   AuthenticatedDashboardIndexRoute: typeof AuthenticatedDashboardIndexRoute
   AuthenticatedIbIndexRoute: typeof AuthenticatedIbIndexRoute
   AuthenticatedMarketAnalysisIndexRoute: typeof AuthenticatedMarketAnalysisIndexRoute
-  AuthenticatedSupportIndexRoute: typeof AuthenticatedSupportIndexRoute
   AuthenticatedFinancialDepositIndexRoute: typeof AuthenticatedFinancialDepositIndexRoute
   AuthenticatedFinancialInternalTransferIndexRoute: typeof AuthenticatedFinancialInternalTransferIndexRoute
   AuthenticatedFinancialMyWalletIndexRoute: typeof AuthenticatedFinancialMyWalletIndexRoute
   AuthenticatedFinancialWithdrawalIndexRoute: typeof AuthenticatedFinancialWithdrawalIndexRoute
   AuthenticatedAccountIdIndexRoute: typeof AuthenticatedAccountIdIndexRoute
-  AuthenticatedSupportIdIndexRoute: typeof AuthenticatedSupportIdIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedProfileRoute: AuthenticatedProfileRouteWithChildren,
+  AuthenticatedSupportRoute: AuthenticatedSupportRouteWithChildren,
   AuthenticatedAccountIndexRoute: AuthenticatedAccountIndexRoute,
   AuthenticatedCopyTradingIndexRoute: AuthenticatedCopyTradingIndexRoute,
   AuthenticatedDashboardIndexRoute: AuthenticatedDashboardIndexRoute,
   AuthenticatedIbIndexRoute: AuthenticatedIbIndexRoute,
   AuthenticatedMarketAnalysisIndexRoute: AuthenticatedMarketAnalysisIndexRoute,
-  AuthenticatedSupportIndexRoute: AuthenticatedSupportIndexRoute,
   AuthenticatedFinancialDepositIndexRoute:
     AuthenticatedFinancialDepositIndexRoute,
   AuthenticatedFinancialInternalTransferIndexRoute:
@@ -660,7 +689,6 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedFinancialWithdrawalIndexRoute:
     AuthenticatedFinancialWithdrawalIndexRoute,
   AuthenticatedAccountIdIndexRoute: AuthenticatedAccountIdIndexRoute,
-  AuthenticatedSupportIdIndexRoute: AuthenticatedSupportIdIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

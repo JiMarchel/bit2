@@ -133,12 +133,11 @@ export function SupportChatPage({ id }: { id: string }) {
   }
 
   return (
-    <div className="mx-auto max-w-3xl p-4 md:p-6">
-      <Card className="flex h-[calc(100vh-8rem)] flex-col overflow-hidden shadow-sm">
+    <Card className="flex h-full flex-col overflow-hidden shadow-sm">
         <CardHeader className="flex flex-row items-center gap-3 border-b">
           <Link
             to="/support"
-            className="text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground lg:hidden"
             aria-label="Back to support"
           >
             <ArrowLeft className="size-5" />
@@ -240,6 +239,5 @@ export function SupportChatPage({ id }: { id: string }) {
           </Button>
         </div>
       </Card>
-    </div>
   );
 }
